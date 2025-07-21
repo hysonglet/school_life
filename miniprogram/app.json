@@ -1,11 +1,42 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/study/curriculum",
+    "pages/life/life",
+    "pages/personal/personal"
   ],
   "window": {
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
     "navigationStyle":"custom"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "主页",
+        "pagePath": "pages/index/index",
+        "iconPath": "resources/images/main.png",
+        "selectedIconPath": "resources/images/main_active.png"
+      },
+      {
+        "text": "学习",
+        "pagePath": "pages/study/curriculum",
+        "iconPath": "resources/images/study.png",
+        "selectedIconPath": "resources/images/study_active.png"
+      },
+      {
+        "text": "生活",
+        "pagePath": "pages/life/life",
+        "iconPath": "resources/images/life.png",
+        "selectedIconPath": "resources/images/life_active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/personal/personal",
+        "iconPath": "resources/images/personal.png",
+        "selectedIconPath": "resources/images/personal_active.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
