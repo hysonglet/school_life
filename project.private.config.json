@@ -1,11 +1,11 @@
 {
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": true,
+    "urlCheck": false,
     "coverView": true,
     "lazyloadPlaceholderEnable": false,
     "skylineRenderEnable": false,
-    "preloadBackgroundData": false,
+    "preloadBackgroundData": true,
     "autoAudits": false,
     "useApiHook": true,
     "useApiHostProcess": true,

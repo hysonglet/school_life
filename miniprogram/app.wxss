@@ -1,0 +1,6 @@
+
+
+.page-title {
+  text-align: left;
+  margin-top: 100rpx;
+}

@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@cloudbase/wx-cloud-client-sdk": "^1.2.1"
+    "@cloudbase/wx-cloud-client-sdk": "^1.2.1",
+    "@vant/weapp": "^1.11.7"
   }
 }

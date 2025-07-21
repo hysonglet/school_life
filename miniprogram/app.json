@@ -38,7 +38,14 @@
       }
     ]
   },
+  "component": "true",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-divider": "@vant/weapp/divider/index"
+  },
   "sitemapLocation": "sitemap.json",
-  "style": "v2",
   "lazyCodeLoading": "requiredComponents"
 }
