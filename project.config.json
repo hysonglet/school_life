@@ -2,6 +2,13 @@
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
+    "showShadowRootInwxmlPanel": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "miniprogram/"
+      }
+    ],
     "urlCheck": true,
     "es6": true,
     "enhance": true,
@@ -33,7 +40,6 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": [],
     "minifyWXSS": true,
     "compileWorklet": false,
     "minifyWXML": true,

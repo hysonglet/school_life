@@ -22,17 +22,15 @@
     <van-tabs swipeable="true" active="教务" type="line">
       <van-tab title="教务">
         <view class="notice_box">
-          <text>
-            今日课程
-          </text>
+          <text>今日课程</text>
           <van-steps steps="{{ notices.class }}" direction="vertical"
           active-color="#ee0a24"/>
         </view>
 
-        <view class="notice_itme_box">
-          <text>
-            班会
-          </text>
+        <view class="notice_box">
+          <text>事项</text>
+          <van-steps steps="{{ notices.notices }}" direction="vertical"
+          active-color="#ee0a24"/>
         </view>
       </van-tab>
       <van-tab title="生活">生活</van-tab>
