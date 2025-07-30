@@ -38,7 +38,7 @@
     "compileWorklet": false,
     "minifyWXML": true,
     "localPlugins": false,
-    "condition": false,
+    "condition": true,
     "swc": false,
     "disableSWC": true,
     "disableUseStrict": false,

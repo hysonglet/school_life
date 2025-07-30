@@ -75,3 +75,19 @@
 
   height: 700rpx;
 }
+
+.notice_box {
+  background: rgb(17, 195, 239);
+  border: 1rpx grey solid;
+  border-radius: 5%;
+}
+
+.notice_title {
+  text-align: center;
+}
+
+.notice_item_box {
+  background: rgb(17, 195, 239);
+  border: 1rpx grey solid;
+  border-radius: 6%;
+}
