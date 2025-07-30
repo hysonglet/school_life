@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@vant/weapp": "^1.11.7"
+  },
+  "name": "school_life",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">     <img src=\"https://qcloudimg.tencent-cloud.cn/raw/dfdfb0e99b2d6029fbc55b0b541a6c1d.png\" alt=\"Logo\" width=\"400\">   <h1 align=\"center\">小程序跳转微信小店</h1> </div>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hysonglet/school_life.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hysonglet/school_life/issues"
+  },
+  "homepage": "https://github.com/hysonglet/school_life#readme"
+}

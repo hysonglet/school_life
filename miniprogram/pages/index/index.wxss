@@ -73,5 +73,17 @@
   border-radius: 15rpx;
   border: 1rpx gray solid;
 
-  height: 700rpx;
+  /* height: 700rpx; */
+}
+
+.notice_box {
+  background: rgb(17, 195, 239);
+  border: 1rpx grey solid;
+  border-radius: 15rpx;
+
+  margin: 10rpx 10rpx 10rpx 10rpx;
+}
+
+.notice_title {
+  text-align: center;
 }

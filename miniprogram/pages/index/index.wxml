@@ -21,8 +21,17 @@
     <van-divider></van-divider>
     <van-tabs swipeable="true" active="教务" type="line">
       <van-tab title="教务">
-        <van-steps steps="{{ notices.class }}" direction="vertical"
+        <view class="notice_box">
+          <text>今日课程</text>
+          <van-steps steps="{{ notices.class }}" direction="vertical"
           active-color="#ee0a24"/>
+        </view>
+
+        <view class="notice_box">
+          <text>事项</text>
+          <van-steps steps="{{ notices.notices }}" direction="vertical"
+          active-color="#ee0a24"/>
+        </view>
       </van-tab>
       <van-tab title="生活">生活</van-tab>
     </van-tabs>
