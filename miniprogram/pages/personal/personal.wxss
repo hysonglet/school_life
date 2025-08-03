@@ -1,1 +1,59 @@
 /* pages/personal/personal.wxss */
+
+.mine-title-container {
+  width: 750rpx;
+  height: 350rpx;
+  background-color: #3284E4;
+  border-radius: 30rpx;
+
+  padding: 0 0 0 0;
+  margin-top: 15rpx;
+
+  display: flex;
+}
+
+.mine-title-container image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 100%;
+  border: white 4rpx solid;
+  margin-top: 80rpx;
+  margin-left: 40rpx;
+}
+
+.mine-info {
+  width: 400rpx;
+  height: 138rpx;
+  /* background-color: red; */
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 80rpx;
+  margin-left: 30rpx;
+  padding: 0rpx, 0, 0, 0;
+  gap: 1rpx;
+}
+
+.mine-info text {
+  margin: 0, 0, 0, 0;
+  padding: 0, 0, 0, 0;
+  font-size: 28rpx;
+  color: white;
+}
+
+.mine-info text:nth-child(1) {
+  font-size: 40rpx;
+  padding-top: 12rpx;
+}
+
+.edit-button {
+  width: 180rpx;
+  height: 100rpx;
+  margin-right: 25rpx;
+  color: greenyellow;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50rpx !important;
+  /* opacity: 100%; */
+}

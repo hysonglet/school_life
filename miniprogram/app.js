@@ -1,28 +1,32 @@
 // app.js
 App({
+  /* 服务器地址 */
+  service_url: "http://localhost:8080",
   userinfo: {
-    "wechat_id": "wxid_678903",
-    "student_id": 0,
-    "phone": 0,
-    "state": 0     // 0 未知  1: 已注册未登录  2: 已注册已登录
+    
   },
   globalData: {
     appName: "校园生活"
   },
   onLaunch: function () {
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力');
-    } else {
-      wx.cloud.init({
-        //   env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
-        env: '',
-        traceUser: true,
-      });
-    }
+    console.log("onLaunch");
+    const that = this;
+    wx.request({
+      url: this.service_url + "/user?wechat_id=wxid_456781",
+      success(res) {
+        // 获取用户信息成功
+        console.log(res.data);
+        that.userinfo = res.data;
+      },
+      fail(res) {
+        // 获取失败
+        console.log(res)
 
-    this.globalData = {};
+        // user not found
+        if (res.code == 404) {
+
+        }
+      }
+    })
   }
 });

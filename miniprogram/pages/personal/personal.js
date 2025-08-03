@@ -5,13 +5,21 @@ Page({
    * Page initial data
    */
   data: {
-
+    userinfo: {}
   },
 
   /**
-   * Lifecycle function--Called when page load
+   * Lifecyclei function--Called when page load
    */
   onLoad(options) {
+
+    const app = getApp();
+    
+    this.setData({
+      userinfo: app.userinfo
+    });
+
+    // console.log(app.userinfo)
 
   },
 
