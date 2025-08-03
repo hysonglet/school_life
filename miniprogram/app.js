@@ -1,5 +1,11 @@
 // app.js
 App({
+  userinfo: {
+    "wechat_id": "wxid_678903",
+    "student_id": 0,
+    "phone": 0,
+    "state": 0     // 0 未知  1: 已注册未登录  2: 已注册已登录
+  },
   globalData: {
     appName: "校园生活"
   },

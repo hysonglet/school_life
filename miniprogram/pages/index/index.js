@@ -7,22 +7,22 @@ const models = client.models
 Page({
   data: {
     announcement_list: [{
-      "images": "/resources/images/test/广告通知测试.png",
+      "images": "https://picsum.photos/300/214?random=1",
       "desc": "这是一个通知",
       "type": "通知"
     },
     {
-      "images": "/resources/images/test/广告通知测试.png",
+      "images": "https://picsum.photos/300/213?random=1",
       "desc": "这是一个广告",
       "type": "广告"
     },
     {
-      "images": "/resources/images/test/广告通知测试.png",
+      "images": "https://picsum.photos/300/212?random=1",
       "desc": "这是一个广告",
       "type": "广告"
     },
     {
-      "images": "/resources/images/test/广告通知测试.png",
+      "images": "https://picsum.photos/300/215?random=1",
       "desc": "这是一个广告",
       "type": "广告"
     }

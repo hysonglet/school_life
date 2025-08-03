@@ -46,4 +46,8 @@ npm i @vant/weapp -S --production
   然后在IDE中点击 <button>工具</button>-><button>构建 npm</button> 即可。
 
 
+## 功能点
+1. 课程表，提醒
+2. 土味情话
+3. 圈圈
 
