@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@cloudbase/wx-cloud-client-sdk": "^1.2.1",
-    "@vant/weapp": "^1.11.7"
+    "@vant/weapp": "^1.11.7",
+    "wx-promise-pro": "^3.2.4"
   },
   "name": "miniprogram",
   "version": "1.0.0",

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/study/curriculum",
     "pages/life/life",
@@ -8,7 +9,7 @@
   "window": {
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
-    "navigationStyle":"custom"
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "list": [
@@ -44,6 +45,7 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-steps": "@vant/weapp/steps/index",
+    "van-field": "@vant/weapp/field/index",
     "van-divider": "@vant/weapp/divider/index"
   },
   "sitemapLocation": "sitemap.json",

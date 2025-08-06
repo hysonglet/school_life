@@ -3,9 +3,19 @@
   font-weight: 500;
   padding-left: 32rpx;
   margin-bottom: 25rpx;
+
+  align-self: start;
 }
 
 /* .page-title {
   text-align: left;
   margin-top: 100rpx;
 } */
+.app-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 750rpx;
+  height: 100vh;
+}

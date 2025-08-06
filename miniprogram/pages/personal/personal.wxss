@@ -1,12 +1,11 @@
-/* pages/personal/personal.wxss */
-
 .mine-title-container {
-  width: 750rpx;
-  height: 350rpx;
+  width: 95%;
+  height: 290rpx;
   background-color: #3284E4;
-  border-radius: 30rpx;
-
+  border-radius: 15rpx;
+  border: 2rpx solid #839192;
   padding: 0 0 0 0;
+  box-shadow: 10rpx 10rpx 5rpx #839192;
   margin-top: 15rpx;
 
   display: flex;

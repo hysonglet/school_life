@@ -1,17 +1,16 @@
-<view class="page-title">
+<view class="app-page">
+  <view class="page-title">
     <text>校园生活</text>
-</view>
-<view class="mine-title-container">
-  <image src="{{userinfo.avatar}}" mode="widthFix"></image>
-
-  <view class="mine-info">
-    <text>{{userinfo.name}}</text>
-    <text>学 号:{{userinfo.student_id}}</text>
-    <text>{{userinfo.major}}</text>
-
   </view>
-  <van-button type="primary" 
-    custom-class="edit-button" 
-    bindtap="edit"
-  >编辑</van-button>
+  <view class="mine-title-container">
+    <image src="{{userinfo.avatar}}" mode="widthFix"></image>
+
+    <view class="mine-info">
+      <text>{{userinfo.name}}</text>
+      <text>学 号:{{userinfo.student_id}}</text>
+      <text>{{userinfo.major}}</text>
+
+    </view>
+    <van-button type="primary" custom-class="edit-button" bindtap="edit">编辑</van-button>
+  </view>
 </view>

@@ -19,7 +19,7 @@ Page({
       userinfo: app.userinfo
     });
 
-    // console.log(app.userinfo)
+    console.log(app.userinfo)
 
   },
 

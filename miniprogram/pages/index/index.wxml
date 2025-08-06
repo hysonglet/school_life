@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view>
+<view class="app-page">
   <view class="page-title">
     <text>校园生活</text>
   </view>

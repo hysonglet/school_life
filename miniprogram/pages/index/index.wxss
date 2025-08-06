@@ -46,12 +46,15 @@
   border-radius: 15rpx;
   border: 2rpx #839192 solid;
   box-shadow: 10rpx 10rpx 5rpx #839192;
+
+  width: 95%;
 }
 
 /* 首页轮播图片 */
 .main_swiper_item view image {
   object-fit: contain;
   width: 100%;
+  border-radius: 15rpx;
 }
 
 /* 首页轮播文字 */

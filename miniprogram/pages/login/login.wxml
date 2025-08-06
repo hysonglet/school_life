@@ -1,0 +1,41 @@
+<!--pages/login/login.wxml-->
+<view class="app-page">
+  <view class="title-header">
+    <view>
+      <image src="/resources/school.png"></image>
+    </view>
+    <text>校园生活</text>
+    <text>让校园生活更便捷</text>
+  </view>
+
+  <view class="page-body">
+    <view class="login-input">
+      <view class="student-id-passwd">
+        学号
+        <input class="basic-input" value="{{this.input_student_id}}" type="number" placeholder="请输入您的学号" 
+           maxlength="20" bindinput="" bindfocus="" bindblur="" bindconfirm="">
+        </input>
+      </view>
+
+      <view class="student-id-passwd">
+        密码
+        <input class="basic-input" value="{{this.input_passwd}}" type="number" placeholder="请输入您的密码" password="true"
+        maxlength="20" bindinput="" bindfocus="" bindblur="" bindconfirm="">
+        </input>
+      </view>
+    </view>
+
+    <van-button custom-class="login-button" type="primary" bind:click="onLoginButtonClick" plain>登录
+    </van-button>
+
+    <view>其他登录方式</view>
+
+    <image class="other_login_icon" src="/resources/wechat.png"></image>
+
+    <!-- <view>登录即代表同意《校园生活用户协议》</view> -->
+
+    <view class="register">还没有注册？
+      <van-button>立即注册</van-button>
+    </view>
+  </view>
+</view>
