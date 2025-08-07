@@ -40,7 +40,7 @@
   font-weight: 300;
 }
 
-/* 首页轮播图片样式 */
+/* 首页轮播图片样式, 轮播通知和广告用 */
 .main_swiper {
   margin: 10rpx 25rpx 20rpx 20rpx;
   border-radius: 15rpx;
@@ -48,17 +48,23 @@
   box-shadow: 10rpx 10rpx 5rpx #839192;
 
   width: 95%;
+  height: 30%;
+}
+
+.main_swiper_item {
+  width: 100%;
+  height: 100%;
 }
 
 /* 首页轮播图片 */
-.main_swiper_item view image {
+.main-swiper-image {
   object-fit: contain;
   width: 100%;
   border-radius: 15rpx;
 }
 
 /* 首页轮播文字 */
-.main_swiper_item view text {
+.main-swiper-text {
   color: white;
   font-size: 32rpx;
   text-align: center;
@@ -77,6 +83,8 @@
   border-radius: 15rpx;
   border: 1rpx gray solid;
 
+  width: 100%;
+  height: 70%;
   /* height: 700rpx; */
 }
 

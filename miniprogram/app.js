@@ -17,9 +17,12 @@ App({
   onLaunch: async function () {
     console.log("onLaunch");
 
+    return;
+    
     await wx.pro.showLoading({
       title: '同步数据中...'
     });
+
     const openid = await this.getOpenId();
     await wx.pro.hideLoading();
 
@@ -73,7 +76,7 @@ App({
   async getOpenId() {
     try {
       const res = await wx.pro.request({
-        url: this.service_url + "/login",
+        url: this.service_url + "/getOpenId",
         data: {
           'code': await this.getWechatCode()
         },
@@ -91,9 +94,10 @@ App({
   },
 
   async getUserInfo(openid) {
+    console.log("getUserInfo...");
     try {
       const student_user = await wx.pro.request({
-        url: this.service_url + "/user?wechat_id=" + openid,
+        url: this.service_url + "/userinfo?wechat_id=" + openid,
         method: "get"
       });
 
