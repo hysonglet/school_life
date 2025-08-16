@@ -1,2 +1,152 @@
-<!--pages/study/curriculum.wxml-->
-<text>pages/study/curriculum.wxml</text>
+<view class="app-page">
+  <view>
+    <text>第一周</text>
+  </view>
+  <view class="course-schedule">
+    <view class="course-schedule-week-content">
+      <!-- 课次 -->
+      <view class="course-schedule-week-index">
+        <view>
+          05月
+        </view>
+        <text>1</text>
+        <text>2</text>
+        <text>3</text>
+        <text>4</text>
+        <text>5</text>
+        <text>6</text>
+        <text>7</text>
+        <text>8</text>
+        <text>9</text>
+        <text>10</text>
+      </view>
+      <view class="course-schedule-week-day">
+        <view>
+          <text>周一
+            22日
+          </text>
+        </view>
+        <view class="course-schedule-box">
+          软件工程与UML编程 
+          精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 
+          创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 
+          创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 
+          创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 
+          创新楼103
+        </view>
+      </view>
+      <view class="course-schedule-week-day">
+        <view><text>周一
+            22日
+          </text></view>
+        <view class="course-schedule-box">
+          软件工程与UML编程 精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 创新楼103
+        </view>
+      </view>
+      <view class="course-schedule-week-day">
+        <text>周一
+          22日
+        </text>
+        <view class="course-schedule-box">
+          软件工程与UML编程 精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 创新楼103
+        </view>
+      </view>
+      <view class="course-schedule-week-day">
+        <view><text>周一
+            22日
+          </text></view>
+        <view class="course-schedule-box">
+          软件工程与UML编程 精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 创新楼103
+        </view>
+      </view>
+      <view class="course-schedule-week-day">
+        <view><text>周一
+            22日
+          </text></view>
+        <view class="course-schedule-box">
+          软件工程与UML编程 精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 创新楼103
+        </view>
+      </view>
+      <view class="course-schedule-week-day">
+        <view><text>周一
+            22日
+          </text></view>
+        <view class="course-schedule-box">
+          软件工程与UML编程 精工楼405
+        </view>
+        <view class="course-schedule-box">
+          物联网工程基础 创新楼205
+        </view>
+        <view class="course-schedule-box">
+          软件测工程 创新楼105
+        </view>
+        <view class="course-schedule-box">
+          嵌入式技术 创新楼204
+        </view>
+        <view class="course-schedule-box">
+          计算机基础 创新楼103
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

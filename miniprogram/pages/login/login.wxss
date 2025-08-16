@@ -87,6 +87,8 @@
   /* border: 3rpx solid red !important; */
   margin-top: 30rpx;
   margin-bottom: 30rpx;
+
+  width: 70%;
 }
 
 .other_login_icon {
@@ -95,7 +97,6 @@
   align-self: center;
   margin-top: 40rpx;
 }
-
 
 .register {
   margin-top: auto;

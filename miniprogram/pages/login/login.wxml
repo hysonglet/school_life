@@ -26,12 +26,12 @@
 
     <!-- <view>登录即代表同意《校园生活用户协议》</view> -->
 
-    <view class="register">还没有注册？
-      <van-button bind:tap="OnShowRegisterInfo">立即注册</van-button>
+    <view class="register">还没有注册/登录异常？
+      <van-button bind:tap="OnShowRegisterInfo" custom-class="register-button">立即注册</van-button>
     </view>
 
     <van-cell title="展示弹出层" is-link bind:click="OnShowRegisterInfo" />
-    <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送学号和姓名至
+    <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送学号和姓名或修改密码至
       <email>1603668253@qq.com</email>
     </van-popup>
   </view>

@@ -66,11 +66,9 @@ Page({
   // 学号和密码方式登录
   // 测试：2020006：2020006
   async loginByStudentId(student_id, password) {
-    const app = getApp();
-
     try {
       const res = await wx.pro.request({
-        url: app.service_url + "/loginById",
+        url: getApp().service_url + "/loginById",
         data: {
           student_id: student_id,
           password: password,
@@ -79,15 +77,15 @@ Page({
       });
       console.log(res);
       if (res.statusCode == 200) {
+        await wx.pro.wx.setStorageSync('token', res.data.cookie);
         return res.data;
-      } else{
+      } else {
         throw new Error(res.statusCode);
       }
     } catch (e) {
       console.log(e);
       throw e;
-    } finally {
-    }
+    } finally {}
   },
 
   // 登录按钮响应
@@ -99,7 +97,7 @@ Page({
       );
       console.log("login result:");
       console.log(res);
-      
+
       // 查询到数据用户数据保存到全局变量
       getApp().userinfo = res;
 
@@ -111,21 +109,24 @@ Page({
       await wx.pro.showToast({
         title: "登录失败: " + e.message,
       });
-    } finally {
-    }
+      return;
+    } finally {}
 
     await wx.pro.switchTab({
-      
       url: '/pages/index/index',
     });
   },
-  
+
   OnShowRegisterInfo() {
-    this.setData({ showRegisterInfo: true });
+    this.setData({
+      showRegisterInfo: true
+    });
   },
 
   onCloseRegisterInfo() {
-    this.setData({ showRegisterInfo: false });
+    this.setData({
+      showRegisterInfo: false
+    });
   }
 
 });

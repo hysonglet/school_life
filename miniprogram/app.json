@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/study/curriculum",
     "pages/login/login",
     "pages/index/index",
-    "pages/study/curriculum",
     "pages/life/life",
     "pages/personal/personal"
   ],
@@ -20,7 +20,7 @@
         "selectedIconPath": "resources/images/main_active.png"
       },
       {
-        "text": "学习",
+        "text": "课程表",
         "pagePath": "pages/study/curriculum",
         "iconPath": "resources/images/study.png",
         "selectedIconPath": "resources/images/study_active.png"
@@ -47,6 +47,9 @@
     "van-steps": "@vant/weapp/steps/index",
     "van-field": "@vant/weapp/field/index",
     "van-popup": "@vant/weapp/popup/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-cell": "@vant/weapp/cell/index",
+  "van-cell-group": "@vant/weapp/cell-group/index",
     "van-divider": "@vant/weapp/divider/index"
   },
   "sitemapLocation": "sitemap.json",

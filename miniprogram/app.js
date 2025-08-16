@@ -8,16 +8,19 @@ promisifyAll(wx, wx.pro);
 App({
   /* 服务器地址 */
   service_url: "http://localhost:8080",
-  userinfo: {
-
-  },
+  userinfo: {},
+  autoWechatLogin: false,
+  isLogin: false,
   globalData: {
     appName: "校园生活"
   },
   onLaunch: async function () {
     console.log("onLaunch");
 
-    return;
+    // 自动登录
+    if (this.autoWechatLogin == false) {
+      return;
+    }
     
     await wx.pro.showLoading({
       title: '同步数据中...'
