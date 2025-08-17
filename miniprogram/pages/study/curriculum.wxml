@@ -1,152 +1,59 @@
-<view class="app-page">
-  <view>
-    <text>第一周</text>
+<view class="header">
+  <image class="refresh-image" src="/resources/refresh.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false"
+    binderror="" bindload="" />
+
+  <view class="header-title">
+    <van-dropdown-menu custom-class="custom-dropdown-menu">
+      <van-dropdown-item title="第{{week_index + 1}}周" value="{{week_index}}" options="{{weeks_array}}"
+        bind:change="onWeekChange" />
+    </van-dropdown-menu>
   </view>
-  <view class="course-schedule">
-    <view class="course-schedule-week-content">
-      <!-- 课次 -->
-      <view class="course-schedule-week-index">
-        <view>
-          05月
-        </view>
-        <text>1</text>
-        <text>2</text>
-        <text>3</text>
-        <text>4</text>
-        <text>5</text>
-        <text>6</text>
-        <text>7</text>
-        <text>8</text>
-        <text>9</text>
-        <text>10</text>
-      </view>
-      <view class="course-schedule-week-day">
-        <view>
-          <text>周一
-            22日
-          </text>
-        </view>
-        <view class="course-schedule-box">
-          软件工程与UML编程 
-          精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 
-          创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 
-          创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 
-          创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 
-          创新楼103
-        </view>
-      </view>
-      <view class="course-schedule-week-day">
-        <view><text>周一
-            22日
-          </text></view>
-        <view class="course-schedule-box">
-          软件工程与UML编程 精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 创新楼103
-        </view>
-      </view>
-      <view class="course-schedule-week-day">
-        <text>周一
-          22日
-        </text>
-        <view class="course-schedule-box">
-          软件工程与UML编程 精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 创新楼103
-        </view>
-      </view>
-      <view class="course-schedule-week-day">
-        <view><text>周一
-            22日
-          </text></view>
-        <view class="course-schedule-box">
-          软件工程与UML编程 精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 创新楼103
-        </view>
-      </view>
-      <view class="course-schedule-week-day">
-        <view><text>周一
-            22日
-          </text></view>
-        <view class="course-schedule-box">
-          软件工程与UML编程 精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 创新楼103
-        </view>
-      </view>
-      <view class="course-schedule-week-day">
-        <view><text>周一
-            22日
-          </text></view>
-        <view class="course-schedule-box">
-          软件工程与UML编程 精工楼405
-        </view>
-        <view class="course-schedule-box">
-          物联网工程基础 创新楼205
-        </view>
-        <view class="course-schedule-box">
-          软件测工程 创新楼105
-        </view>
-        <view class="course-schedule-box">
-          嵌入式技术 创新楼204
-        </view>
-        <view class="course-schedule-box">
-          计算机基础 创新楼103
-        </view>
-      </view>
+</view>
+
+<view class="body">
+  <view class="week_header">
+    <view class="mounth_title">
+      <text>{{mounth < 10 ? '0' + mounth: mounth}}</text>
+      <text>月</text>
     </view>
+
+    <!-- 星期与日期 -->
+    <view wx:for="{{week_days}}" wx:key="index" class="week_day {{item.is_today ? 'is_today': ''}}">
+      <text>{{item.week}}</text>
+      <text>{{item.day < 10 ? '0' + item.day: item.day}}</text>
+    </view>
+  </view>
+
+  <view class="curriculum_list-body">
+    <view class="left">
+      <view wx:for="{{curriculum_time_list}}" wx:key="index" class="curriculum_time_list">{{item}}</view>
+    </view>
+
+    <swiper class="swiper_body" current="{{week_index}}" duration="300" bindchange="onSwiperWeekChange">
+      <!-- 生成固定周数个子对象 -->
+      <block wx:for="{{weeks_array}}" wx:key="weekIndex" wx:for-index="weekIndex">
+        <!-- 每周的父控件 -->
+        <swiper-item class="swiper-item">
+          <!-- 绘制课程块 -->
+          <!-- TODO 单双周考虑优化 -->
+          <view class="class-item" 
+          bind:tap="onCourseInfoShow" data-index="{{item}}"
+          wx:for="{{weeklyClassSchedule}}" wx:key="class_index" 
+          wx:for-index="class_index"
+            wx:if="{{(weekIndex + 1) >= item.week_start && ((weekIndex + 1) <= item.week_end)}}"
+            style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object]}};">
+            <!-- 课程信息 -->
+            <text>{{item.object}}({{item.teacher}})
+              @{{item.address}}
+            </text>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 显示课程信息 -->
+    <van-popup show="{{showCourseInfo}}" bind:close="onCourseInfoClose">
+      课程信息
+    </van-popup>
   </view>
 </view>
