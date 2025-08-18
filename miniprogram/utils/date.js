@@ -77,7 +77,53 @@ function getWeekday(date) {
   return chineseWeekdays[dayNum];
 }
 
+/**
+ * 根据起始日期计算目标日期是第几周
+ * @param {string} startDateStr - 起始日期（格式：yyyy-mm-dd，如 "2024-09-01"）
+ * @param {string} targetDateStr - 目标日期（格式同上）
+ * @returns {number} 目标日期相对于起始日期的周数（起始日期为第1周）
+ */
+function getWeekNumber(startDateStr, targetDateStr) {
+  // 1. 转换为Date对象（处理无效日期）
+  const startDate = new Date(startDateStr);
+  const targetDate = new Date(targetDateStr);
+  if (isNaN(startDate.getTime()) || isNaN(targetDate.getTime())) {
+    throw new Error("日期格式错误，请使用 yyyy-mm-dd 格式");
+  }
+
+  // 2. 计算UTC时间差（避免时区偏移导致的日期偏差）
+  // 仅保留年月日，忽略时分秒（统一按UTC的0点计算）
+  const startUTC = Date.UTC(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate()
+  );
+  const targetUTC = Date.UTC(
+    targetDate.getFullYear(),
+    targetDate.getMonth(),
+    targetDate.getDate()
+  );
+
+  // 3. 计算天数差（毫秒差 → 天数）
+  const dayDiff = Math.floor((targetUTC - startUTC) / (1000 * 60 * 60 * 24));
+
+  // 4. 处理目标日期在起始日期之前的情况（返回0或负数，根据需求调整）
+  if (dayDiff < 0) {
+    return 0; // 或 return Math.floor(dayDiff / 7) - 1;（负周数）
+  }
+
+  // 5. 计算周数：天数差 ÷7 取整后 +1（起始日期为第1周）
+  return Math.floor(dayDiff / 7) + 1;
+}
+
+function indexToWeekDay(index) {
+  const weekDays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  return weekDays[index];
+}
+
 module.exports = {
   getWeekDate: getWeekDate,
   getWeekday: getWeekday,
+  getWeekNumber: getWeekNumber,
+  indexToWeekDay: indexToWeekDay,
 }

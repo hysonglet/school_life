@@ -1,1 +1,11 @@
-/* pages/life/life.wxss */
+
+.body {
+  width: 750rpx;
+  height: 1000rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}

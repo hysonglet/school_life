@@ -38,7 +38,7 @@
           <!-- TODO 单双周考虑优化 -->
           <view class="class-item" 
           bind:tap="onCourseInfoShow" data-index="{{item}}"
-          wx:for="{{weeklyClassSchedule}}" wx:key="class_index" 
+          wx:for="{{coursesSchedule}}" wx:key="class_index" 
           wx:for-index="class_index"
             wx:if="{{(weekIndex + 1) >= item.week_start && ((weekIndex + 1) <= item.week_end)}}"
             style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object]}};">
@@ -52,8 +52,20 @@
     </swiper>
 
     <!-- 显示课程信息 -->
-    <van-popup show="{{showCourseInfo}}" bind:close="onCourseInfoClose">
-      课程信息
+    <van-popup show="{{showCourseInfo}}" 
+    position="bottom"
+    closeable
+    bind:close="onCourseInfoClose">
+      <view class="course-info-detail">
+        <text>课程信息:</text>
+        <text>课程名: {{showCourseInfoCountent.object}}</text>
+        <text>教  师: {{showCourseInfoCountent.teacher}}</text>
+        <text>教  室: {{showCourseInfoCountent.address}}</text>
+        <text>起始周: 第{{showCourseInfoCountent.week_start}}周</text>
+        <text>结束周: 第{{showCourseInfoCountent.week_end}}周</text>
+        <!-- <text>星  期 : {{utils.indexToWeekDay(showCourseInfoCountent.week)}}</text> -->
+        <text>时  间: 第{{showCourseInfoCountent.class_start}}{{showCourseInfoCountent.class_duration > 1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start + showCourseInfoCountent.class_duration:''}}节</text>
+      </view>
     </van-popup>
   </view>
 </view>

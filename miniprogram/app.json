@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/study/curriculum",
     "pages/login/login",
-    "pages/index/index",
     "pages/life/life",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "utils/date.wxs"
   ],
   "window": {
     "backgroundColor": "#fff",

@@ -20,69 +20,10 @@ Page({
     courseColor: {},
     // 显示课程详细信息
     showCourseInfo: false,
+    showCourseInfoCountent: {},
     // 从数据库中获得的课程表清单
     // TODO：单双周考虑
-    weeklyClassSchedule: [{
-      week_start: 1,
-      week_end: 5,
-      week: 1,
-      class_start: 1,
-      class_duration: 1,
-      object: "数据库系统",
-      address: "D2实训楼 203",
-      teacher: "老师1",
-    },
-    {
-      week_start: 1,
-      week_end: 6,
-      week: 2,
-      class_start: 5,
-      class_duration: 2,
-      object: "Python 程序设计",
-      address: "D2实训楼 203",
-      teacher: "老师2",
-    },
-    {
-      week_start: 4,
-      week_end: 5,
-      week: 1,
-      class_start: 3,
-      class_duration: 2,
-      object: "计算机基础",
-      address: "D2实训楼 203",
-      teacher: "老师3",
-    },
-    {
-      week_start: 4,
-      week_end: 8,
-      week: 1,
-      class_start: 3,
-      class_duration: 2,
-      object: "Web开发",
-      address: "D2实训楼 203",
-      teacher: "老师3",
-    },
-    {
-      week_start: 4,
-      week_end: 8,
-      week: 5,
-      class_start: 3,
-      class_duration: 2,
-      object: "Web开发",
-      address: "D2实训楼 203",
-      teacher: "老师3",
-    },
-    {
-      week_start: 1,
-      week_end: 5,
-      week: 6,
-      class_start: 1,
-      class_duration: 2,
-      object: "心理健康",
-      address: "D2实训楼 203",
-      teacher: "老师2",
-    },
-    ],
+    coursesSchedule: [],
     curriculum_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     // 课程表的日期显示列表
     week_days: [{
@@ -126,7 +67,8 @@ Page({
   // 根据周数刷新周和日期显示的后台数据
   updateWeekDays() {
     const app = getApp();
-    const startDate = app.schdule_info.semesterStartDate;
+
+    const startDate = app.semesterStartDate;
 
     // console.log(startDate);
 
@@ -144,10 +86,6 @@ Page({
       };
     })
 
-    // console.log(week_days)
-
-    // console.log(this.isInWeekForSchedule(this.data.weeklyClassSchedule[0], 6))
-
     this.setData({
       week_days: week_days,
       mounth: rst[0].getMonth() + 1
@@ -155,7 +93,7 @@ Page({
   },
 
   // 更新课程表，将课程名提取到数组
-  _updateCourseList() {
+  async _updateCourseList() {
     const colorList = [
       "#FDFFB8",
       "#4DFFBE",
@@ -181,7 +119,16 @@ Page({
       "#FF2DD1",
       "#00FFDE"
     ];
-    const object_list = [...new Set(this.data.weeklyClassSchedule.map(course => course.object))];
+
+    const app = getApp();
+
+    console.log(app.coursesSchedule)
+
+    this.setData({
+      coursesSchedule: app.coursesSchedule
+    })
+
+    const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object))];
 
     const courseColorCache = {};
     object_list.forEach((courseName, index) => {
@@ -223,9 +170,10 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  onLoad: async function (options) {
     this.updateWeekDays()
-    this._updateCourseList()
+
+    await this._updateCourseList()
 
     if (this.data.week_count > 0) {
       const array = Array.from({
@@ -240,10 +188,7 @@ Page({
       this.setData({
         weeks_array: array
       })
-      // console.log(array)
-      // console.log(this.data.weeks_array)
       const today = new Date();
-      // console.log(today);
     }
   },
 
@@ -297,11 +242,20 @@ Page({
   },
 
   onCourseInfoShow(event) {
-    console.log(event)
+    // console.log(event)
+    const course = event.currentTarget.dataset.index;
+    console.log(course)
+
+    this.setData({
+      showCourseInfo: true,
+      showCourseInfoCountent:course
+    })
   },
 
   // 课程信息关闭
   onCourseInfoClose() {
-
+    this.setData({
+      showCourseInfo: false
+    })
   }
 })

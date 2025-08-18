@@ -4,8 +4,12 @@ const {
 const client = init(wx.cloud)
 const models = client.models
 
+import * as utils from "../../utils/date"
+
 Page({
   data: {
+    todayCourses: [],
+    noticeTabActive: 0,
     announcement_list: [{
         "images": "/resources/images/test/广告通知测试.png",
         "desc": "这是一个通知",
@@ -26,59 +30,45 @@ Page({
         "desc": "这是一个广告",
         "type": "广告"
       }
-    ],
-    notices: {
-      class: [{
-          "text": "08:30",
-          "address": "创新楼 1105",
-          "desc": "电路分析"
-        },
-        {
-          "text": "09:30",
-          "address": "创新楼 1105",
-          "desc": "计算机组成原理"
-        },
-        {
-          "text": "10:30",
-          "address": "创新楼 1105",
-          "desc": "嵌入式"
-        },
-        {
-          "text": "11:30",
-          "address": "创新楼 1105",
-          "desc": "Python"
-        },
-        {
-          "text": "13:30",
-          "address": "创新楼 1105",
-          "desc": "数据结构"
-        },
-        {
-          "text": "15:30",
-          "address": "创新楼 1105",
-          "desc": "C语言"
-        },
-        {
-          "text": "17:30",
-          "address": "创新楼 1105",
-          "desc": "C++"
-        },
-      ],
-      notices: [{
-          "text": "12:20",
-          "desc": "班会 创新楼 1105"
-        },
-        {
-          "text": "12:30",
-          "desc": "联谊 创新楼 1105"
-        }
-      ],
-      life: [
-
-      ]
-    },
+    ]
   },
-  async onLoad() {},
+  async onLoad() {
+
+    while (!getApp().launchFinished) {
+      // 等待 100ms 再检查（避免死循环）
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    await this.updateTodayCourses();
+  },
+
+  onReady: async function () {
+
+  },
   onChangeTab(e) {},
-  onOpenTipsModal() {}
+  onOpenTipsModal() {},
+
+  // 获取今日课程
+  async updateTodayCourses() {
+    const app = getApp();
+
+    const today = new Date();
+    const semesterStartDate = new Date(app.semesterStartDate);
+
+    const todayCoursesCache = app.coursesSchedule.filter(courses => {
+      const courseDate = new Date(semesterStartDate);
+      courseDate.setDate(semesterStartDate.getDate() + (courses.week_start - 1) * 7 + (courses.week - 1));
+
+      const nowWeek = utils.getWeekNumber(semesterStartDate, today);
+      return (courses.week_start <= nowWeek) &&
+        (courses.week_end >= nowWeek) &&
+        (today.getDay() == courses.week);
+    })
+
+    console.log(todayCoursesCache);
+
+    this.setData({
+      todayCourses: todayCoursesCache
+    })
+  }
 });

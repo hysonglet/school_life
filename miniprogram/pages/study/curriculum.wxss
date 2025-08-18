@@ -144,3 +144,11 @@
   padding: 5rpx 10rpx 5rpx 5rpx;
   margin: 2rpx 2rpx 2rpx 2rpx;
 }
+
+.course-info-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 50rpx;
+  margin-top: 50rpx;
+}

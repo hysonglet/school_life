@@ -19,21 +19,20 @@
       van
     </van-button> -->
     <van-divider></van-divider>
-    <van-tabs swipeable="true" active="教务" type="line">
-      <van-tab title="教务">
-        <view class="notice_box">
-          <text>今日课程</text>
-          <van-steps steps="{{ notices.class }}" direction="vertical"
-          active-color="#ee0a24"/>
+    <van-tabs swipeable="true" active="{{noticeTabActive}}" type="line">
+      <van-tab title="今日课表">
+        <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
+          <view class="today_courses_item" wx:for="{{todayCourses}}" wx:key="index">
+            <text>{{item.object}}</text>
+            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration:''}}节
+            {{item.address}}</text>
+          </view>
         </view>
-
-        <view class="notice_box">
-          <text>事项</text>
-          <van-steps steps="{{ notices.notices }}" direction="vertical"
-          active-color="#ee0a24"/>
+        <view wx:else>
+          暂无今日课表
         </view>
       </van-tab>
-      <van-tab title="生活">生活</van-tab>
+      <van-tab title="生活" disabled>生活</van-tab>
     </van-tabs>
   </view>
 </view>
