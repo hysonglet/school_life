@@ -43,7 +43,8 @@
             wx:if="{{(weekIndex + 1) >= item.week_start && ((weekIndex + 1) <= item.week_end)}}"
             style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object]}};">
             <!-- 课程信息 -->
-            <text>{{item.object}}({{item.teacher}})
+            <text>{{item.object}}
+            ({{item.teacher}})
               @{{item.address}}
             </text>
           </view>

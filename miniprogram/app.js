@@ -19,16 +19,7 @@ App({
   semesterStartDate: "2025-08-15",
   // 从数据库中请求的课程表
   coursesSchedule: [],
-  /**
- * 小程序启动时的生命周期函数，用于处理初始化逻辑。
- * 1. 检查是否启用自动微信登录，若未启用则直接返回。
- * 2. 显示加载提示，同步数据中。
- * 3. 获取用户的 openid，若成功则存入全局数据，否则提示失败。
- * 4. 根据 openid 获取用户信息，并打印日志。
- * @async
- * @function onLaunch
- * @returns {Promise<void>} 无返回值，但包含异步操作。
- */
+
   onLaunch: async function () {
     console.log("onLaunch");
 
@@ -54,17 +45,17 @@ App({
       })
     }
 
-    this.userinfo = await this.getUserInfo(openid);
+    // this.userinfo = await this.getUserInfo(openid);
 
-    console.log("userInfo:");
-    console.log(this.userinfo);
+    // console.log("userInfo:");
+    // console.log(this.userinfo);
 
-    await this.getCoursesSchedule(); // 获取课程表
+    // await this.getCoursesSchedule(); // 获取课程表
 
     // console.log(this.coursesSchedule)
-    console.log("onLaunch end");
+    // console.log("onLaunch end");
 
-    this.launchFinished = true;
+    // this.launchFinished = true;
   },
 
   // 获取微信小程序临时code码
