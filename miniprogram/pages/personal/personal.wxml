@@ -7,7 +7,7 @@
 
     <view class="mine-info">
       <text>{{userinfo.name}}</text>
-      <text>学 号:{{userinfo.student_id}}</text>
+      <text>学 号:{{userinfo.student_no}}</text>
       <text>{{userinfo.major}}</text>
 
     </view>

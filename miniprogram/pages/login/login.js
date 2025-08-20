@@ -20,6 +20,7 @@ Page({
     console.log("userinfo", userinfo)
     // 已经有用户信息了，直接跳转到主页
     if (userinfo) {
+      getApp().userinfo = userinfo;
       wx.switchTab({
         url: '/pages/index/index',
       });

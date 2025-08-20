@@ -14,10 +14,6 @@
   </swiper>
 
   <view id="announcement_view">
-    <view>通知</view>
-    <!-- <van-button type="primary">
-      van
-    </van-button> -->
     <van-divider></van-divider>
     <van-tabs swipeable="true" active="{{noticeTabActive}}" type="line">
       <van-tab title="今日课表">

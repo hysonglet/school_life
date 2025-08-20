@@ -3,9 +3,14 @@
   font-size: 19px;
   font-weight: 500;
   padding-left: 32rpx;
-  margin-bottom: 25rpx;
+  /* margin-bottom: 25rpx; */
 
+  display: flex;
+  flex-direction: column;
   align-self: start;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100rpx;
 }
 
 /* .page-title {

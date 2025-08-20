@@ -126,3 +126,10 @@
   color: #666666;
   font-size: 26rpx;
 }
+
+.today_courses_item text:first-child {
+  width: 400rpx;
+  text-align: left;
+  overflow: hidden;
+  /* white-space: nowrap; */
+}

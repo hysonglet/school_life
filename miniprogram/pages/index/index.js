@@ -39,14 +39,22 @@ Page({
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
+    console.log("onLoad end");
+
     await this.updateTodayCourses();
   },
 
   onReady: async function () {
-
+    await this.updateTodayCourses();
   },
   onChangeTab(e) {},
   onOpenTipsModal() {},
+  onTabItemTap: async function(item) {
+    console.log("onTabItemTap: " + item.index);
+    if (item.index == 0) {
+      await this.updateTodayCourses();
+    }
+  },
 
   // 获取今日课程
   async updateTodayCourses() {

@@ -9,7 +9,7 @@ Page({
    */
   data: {
     // 当前显示的周
-    week_index: 1,
+    week_index: -1,
     // 当前学期的周数
     week_count: 20,
     // 当前学期的所有周的选项清单
@@ -95,10 +95,10 @@ Page({
   // 更新课程表，将课程名提取到数组
   async _updateCourseList() {
     const colorList = [
-      "#FDFFB8",
+      "#fbff35ff",
+      "#df7767ff",
       "#4DFFBE",
       "#1de0f2ff",
-      "#fbff35ff",
       "#7bec2aff",
       "#F5CBCB",
       "#78C841",
@@ -122,8 +122,6 @@ Page({
 
     const app = getApp();
 
-    console.log(app.coursesSchedule)
-
     this.setData({
       coursesSchedule: app.coursesSchedule
     })
@@ -138,7 +136,7 @@ Page({
     this.setData({
       courseColor: courseColorCache,
     })
-    console.log(this.data.courseColor)
+    console.log("courseColor", this.data.courseColor)
   },
 
   /**
@@ -241,6 +239,31 @@ Page({
 
   },
 
+  // 监听底部TabBar点击事件
+  onTabItemTap: async function(item) {
+    console.log('当前点击的Tab信息:', item);
+    switch(item.index) {
+      case 0:
+        break;
+      case 1:
+        await this.onRefresh()
+        break;
+    }
+  },
+
+
+  async onRefresh() {
+    await getApp().getCoursesSchedule();
+    await this._updateCourseList();
+    const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
+
+    console.log("week", week)
+
+    this.setData({
+      week_index: week - 1
+    })
+  },
+
   onCourseInfoShow(event) {
     // console.log(event)
     const course = event.currentTarget.dataset.index;
@@ -248,7 +271,7 @@ Page({
 
     this.setData({
       showCourseInfo: true,
-      showCourseInfoCountent:course
+      showCourseInfoCountent: course
     })
   },
 

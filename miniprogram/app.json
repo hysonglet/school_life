@@ -2,7 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
-    "pages/study/curriculum",
+    "pages/study/index",
     "pages/life/life",
     "pages/personal/personal",
     "utils/date.wxs"
@@ -22,7 +22,7 @@
       },
       {
         "text": "课程表",
-        "pagePath": "pages/study/curriculum",
+        "pagePath": "pages/study/index",
         "iconPath": "resources/images/study.png",
         "selectedIconPath": "resources/images/study_active.png"
       },

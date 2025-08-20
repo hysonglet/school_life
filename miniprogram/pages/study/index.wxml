@@ -1,6 +1,6 @@
 <view class="header">
   <image class="refresh-image" src="/resources/refresh.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false"
-    binderror="" bindload="" />
+    binderror="" bindload="" bind:tap="onRefresh"/>
 
   <view class="header-title">
     <van-dropdown-menu custom-class="custom-dropdown-menu">
