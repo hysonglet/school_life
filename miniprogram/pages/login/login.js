@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    input_student_id: '2025001',
+    input_student_id: 'S2023001',
     input_password: "",
 
     // 显示注册提示
@@ -66,18 +66,6 @@ Page({
    */
   onShareAppMessage() {},
 
-  onStudentIdInputChange(e) {
-    this.setData({
-      input_student_id: e.detail,
-    });
-  },
-
-  onPasswdInputChange(e) {
-    this.setData({
-      input_password: e.detail,
-    });
-  },
-
   // 学号和密码方式登录
   // 测试：2020006：2020006
   async loginByStudentNo(student_no, password) {
@@ -125,8 +113,10 @@ Page({
   // 登录按钮响应
   async onLoginButtonClick() {
     try {
+      console.log("user: ", this.data.input_student_id)
+      console.log("password: ", this.data.input_password)
       const res = await this.loginByStudentNo(
-        Number(this.data.input_student_id),
+        this.data.input_student_id,
         this.data.input_password
       );
 

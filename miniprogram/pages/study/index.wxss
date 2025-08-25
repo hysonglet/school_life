@@ -103,6 +103,7 @@
   background-color: #F5F7F8;
   /* margin-top: 0rpx; */
   /* background-color: red; */
+  border: #40D6B0 solid 2rpx;
 }
 
 .curriculum_time_list {
@@ -131,10 +132,11 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  gap: 0rpx 0rpx;
 }
 
 .class-item {
-  /* height: 120rpx; */
+  /* height: 110rpx; */
   width: 96rpx;
   /* border: 1rpx solid gold; */
   font-size: 24rpx;
@@ -143,8 +145,8 @@
   border-radius: 10rpx;
 
   justify-content: center;
-  padding: 5rpx 10rpx 5rpx 5rpx;
-  margin: 2rpx 2rpx 2rpx 2rpx;
+  /* padding: 5rpx 10rpx 5rpx 5rpx; */
+  /* margin: 2rpx 2rpx 2rpx 2rpx; */
 }
 
 .course-info-detail {

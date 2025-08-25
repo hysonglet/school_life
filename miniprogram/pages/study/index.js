@@ -68,27 +68,31 @@ Page({
   updateWeekDays() {
     const app = getApp();
 
+    // 获取当前学期的开始日期
     const startDate = app.semesterStartDate;
 
-    // console.log(startDate);
-
-    const rst = utils.getWeekDate(startDate, this.data.week_index + 1, true);
+    // 根据当前周数获取一周的日期列表
+    const data_list = utils.getWeekDate(startDate, this.data.week_index + 1, true);
 
     const today = new Date();
 
-    const week_days = Array.from(rst, (item) => {
+    // 返回的日期列表对象
+    const week_days = Array.from(data_list, (item) => {
       const day = item.getYear();
-      // console.log(item);
       return {
+        // 星期
         week: utils.getWeekday(item),
+        // 是否是今天
         is_today: item.getDate() == today.getDate() && item.getMonth() == today.getMonth(),
+        // 日期
         day: item.getDate()
       };
     })
 
+    // 月份和日期
     this.setData({
       week_days: week_days,
-      mounth: rst[0].getMonth() + 1
+      mounth: data_list[0].getMonth() + 1
     })
   },
 
@@ -120,10 +124,8 @@ Page({
       "#00FFDE"
     ];
 
-    const app = getApp();
-
     this.setData({
-      coursesSchedule: app.coursesSchedule
+      coursesSchedule: getApp().coursesSchedule
     })
 
     const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object))];
@@ -256,8 +258,6 @@ Page({
     await getApp().getCoursesSchedule();
     await this._updateCourseList();
     const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
-
-    console.log("week", week)
 
     this.setData({
       week_index: week - 1

@@ -65,7 +65,7 @@
         <text>起始周: 第{{showCourseInfoCountent.week_start}}周</text>
         <text>结束周: 第{{showCourseInfoCountent.week_end}}周</text>
         <!-- <text>星  期 : {{utils.indexToWeekDay(showCourseInfoCountent.week)}}</text> -->
-        <text>时  间: 第{{showCourseInfoCountent.class_start}}{{showCourseInfoCountent.class_duration > 1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start + showCourseInfoCountent.class_duration:''}}节</text>
+        <text>时  间: 第{{showCourseInfoCountent.class_start}}{{showCourseInfoCountent.class_duration > 1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start - 1 + showCourseInfoCountent.class_duration:''}}节</text>
       </view>
     </van-popup>
   </view>

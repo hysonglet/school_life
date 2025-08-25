@@ -9,11 +9,11 @@
 
   <view class="page-body">
     <view class="login-input">
-      <van-field value="{{input_student_id}}" label="学号" placeholder="请输入您的学号" border="{{ true }}" required
-        bind:change="onStudentIdInputChange" />
+      <van-field model:value="{{input_student_id}}" label="学号" placeholder="请输入您的学号" border="{{ true }}" required
+        />
 
-      <van-field value="{{ input_passwd }}" type="password" label="密码" placeholder="请输入密码" required border="{{ false }}"
-        bind:change="onPasswdInputChange" />
+      <van-field model:value="{{ input_password }}" type="password" label="密码" placeholder="请输入密码" required border="{{ false }}"
+        />
     </view>
 
     <van-button custom-class="login-button" type="primary" bind:click="onLoginButtonClick" plain>登录
@@ -25,13 +25,12 @@
 
     <!-- <view>登录即代表同意《校园生活用户协议》</view> -->
 
-    <view class="register">还没有注册/登录异常？
-      <van-button bind:tap="OnShowRegisterInfo" custom-class="register-button">立即注册</van-button>
-    </view>
 
-    <van-cell title="展示弹出层" is-link bind:click="OnShowRegisterInfo" />
+    <view class="register">
+      <van-cell title="还没有注册/登录异常？" is-link bind:click="OnShowRegisterInfo" />
     <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送学号和姓名或修改密码至
       <email>1603668253@qq.com</email>
     </van-popup>
+    </view>
   </view>
 </view>
