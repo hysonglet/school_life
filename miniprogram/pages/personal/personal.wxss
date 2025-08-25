@@ -56,3 +56,10 @@
   border-radius: 50rpx !important;
   /* opacity: 100%; */
 }
+
+.mine-container {
+  width: 95%;
+  height: 100%;
+
+  margin-top: 100rpx;
+}

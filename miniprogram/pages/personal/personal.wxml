@@ -13,4 +13,21 @@
     </view>
     <van-button type="primary" custom-class="edit-button" bindtap="edit">编辑</van-button>
   </view>
+
+  <view class="mine-container">
+    <van-collapse accordion value="{{ collapseActiveName }}" bind:change="onCollapseChange">
+    <van-collapse-item title="关于本程序" name="1">
+      SG通为校内师生软件实践课程团队开发,仅用于学习和交流web应用开发技术，不代表学校官方和组织，后台数据为校内同学的贡献，一切行为与官方无关。
+    </van-collapse-item>
+    <van-collapse-item title="团队介绍" name="2">
+      <text>创始人：彭老师  
+        参与开发：彭老师，覃同学，颜同学
+      </text>
+    </van-collapse-item>
+    <van-collapse-item title="BUG提交" name="3">
+      任何BUG问题及优化、功能建议可发送邮件到 <EMAIL>
+      1603668353@qq.com</EMAIL>
+    </van-collapse-item>
+  </van-collapse>
+  </view>
 </view>

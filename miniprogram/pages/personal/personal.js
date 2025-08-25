@@ -5,6 +5,7 @@ Page({
    * Page initial data
    */
   data: {
+    collapseActiveName: 1,
     userinfo: {}
   },
 
@@ -63,6 +64,12 @@ Page({
    */
   onReachBottom() {
 
+  },
+
+  onCollapseChange(e) {
+    this.setData({
+      collapseActiveName: e.detail
+    });
   },
 
   /**
