@@ -4,7 +4,7 @@
     <text>校园生活</text>
   </view>
   <!-- 显示通知和广告轮播 -->
-  <swiper class="main_swiper" indicator-dots="true" autoplay="true" duration="2000" circular="true">
+  <swiper class="main_swiper" indicator-dots="true" autoplay="true" duration="1000" circular="true">
     <swiper-item wx:for="{{announcement_list}}" wx:key="index" class="main_swiper_item">
       <view>
         <image class="main-swiper-image" src="{{item.images}}" mode="widthFix"></image>

@@ -1,6 +1,6 @@
 .mine-title-container {
   width: 95%;
-  height: 290rpx;
+  height: 300rpx;
   background-color: #3284E4;
   border-radius: 15rpx;
   border: 2rpx solid #839192;
@@ -16,7 +16,7 @@
   height: 140rpx;
   border-radius: 100%;
   border: white 4rpx solid;
-  margin-top: 80rpx;
+  margin-top: 20rpx;
   margin-left: 40rpx;
 }
 
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
 
-  margin-top: 80rpx;
+  margin-top: 20rpx;
   margin-left: 30rpx;
   padding: 0rpx, 0, 0, 0;
   gap: 1rpx;
@@ -46,7 +46,7 @@
   padding-top: 12rpx;
 }
 
-.edit-button {
+/* .edit-button {
   width: 180rpx;
   height: 100rpx;
   margin-right: 25rpx;
@@ -54,12 +54,29 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 50rpx !important;
-  /* opacity: 100%; */
-}
+} */
 
 .mine-container {
   width: 95%;
   height: 100%;
-
   margin-top: 100rpx;
+  border: #839192 solid 1rpx;
+  border-radius: 15rpx;
+}
+
+.password-change-container {
+  width: 95%;
+  height: 100%;
+  margin-top: 50rpx;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20rpx;
+}
+
+.update-password-button {
+  border-radius: 10rpx;
+  width: 95%;
 }

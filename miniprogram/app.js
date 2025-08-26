@@ -7,7 +7,8 @@ promisifyAll(wx, wx.pro);
 
 App({
   /* 服务器地址 */
-  service_url: "http://localhost:8080",
+  service_url: "https://sgtong.cloud",
+  // service_url: "http://localhost:8080",
   // service_url: "http://43.136.124.10:8080",
   userinfo: {},
   autoWechatLogin: true,

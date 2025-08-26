@@ -11,23 +11,23 @@ Page({
     todayCourses: [],
     noticeTabActive: 0,
     announcement_list: [{
-        "images": "/resources/images/test/广告通知测试.png",
-        "desc": "这是一个通知",
+        "images": "/resources/images/test/风景.jpg",
+        "desc": "关于举办电子设计大赛的通知",
         "type": "通知"
       },
       {
-        "images": "/resources/images/test/广告通知测试.png",
-        "desc": "这是一个广告",
-        "type": "广告"
+        "images": "/resources/images/test/邵工1.jpg",
+        "desc": "热烈祝贺我校获得全国大学生电子设计竞赛一等奖",
+        "type": "新闻"
       },
       {
-        "images": "/resources/images/test/广告通知测试.png",
-        "desc": "这是一个广告",
-        "type": "广告"
+        "images": "/resources/images/test/邵工2.jpg",
+        "desc": "关于寒假放假的工作安排",
+        "type": "通知"
       },
       {
-        "images": "/resources/images/test/广告通知测试.png",
-        "desc": "这是一个广告",
+        "images": "/resources/images/test/邵工3.jpg",
+        "desc": "国家计算机二级考试培训",
         "type": "广告"
       }
     ]
