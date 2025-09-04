@@ -6,6 +6,7 @@
     "pages/study/index",
     "pages/life/life",
     "pages/personal/personal",
+    "pages/settings/index",
     "utils/date.wxs"
   ],
   "window": {
@@ -28,14 +29,8 @@
         "selectedIconPath": "resources/images/study_active.png"
       },
       {
-        "text": "生活",
-        "pagePath": "pages/life/life",
-        "iconPath": "resources/images/life.png",
-        "selectedIconPath": "resources/images/life_active.png"
-      },
-      {
-        "text": "我的",
-        "pagePath": "pages/personal/personal",
+        "text": "设置",
+        "pagePath": "pages/settings/index",
         "iconPath": "resources/images/personal.png",
         "selectedIconPath": "resources/images/personal_active.png"
       }

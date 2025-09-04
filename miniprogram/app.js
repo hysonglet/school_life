@@ -18,23 +18,21 @@ App({
   },
   launchFinished: false,
   // 第一周开始日期
-  semesterStartDate: "2025-08-11",
+  semesterStartDate: "2025-09-01",
   // 从数据库中请求的课程表
   coursesSchedule: [],
   // 选择的班级
   classSelect: "",
 
   onLaunch: async function () {
-    console.log("onLaunch");
+    // // 自动登录
+    // if (this.autoWechatLogin == false) {
+    //   return;
+    // }
 
-    // 自动登录
-    if (this.autoWechatLogin == false) {
-      return;
-    }
-
-    await wx.pro.showLoading({
-      title: '同步数据中...'
-    });
+    // await wx.pro.showLoading({
+    //   title: '同步数据中...'
+    // });
 
     // const openid = await this.getOpenId();
     // await wx.pro.hideLoading();

@@ -10,7 +10,7 @@
   <view class="page-body">
     <view class="select-container">
       <van-field
-        value="{{ fieldValue }}"
+        value="{{ classFieldValue }}"
         is-link
         readonly
         label="班级"

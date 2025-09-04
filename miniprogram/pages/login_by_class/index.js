@@ -6,6 +6,7 @@ Page({
   data: {
     departmentShow: false,
     classSelect: "",
+    classFieldValue: "",
     departmentsOptions: []
   },
 
@@ -13,6 +14,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    // 从本地读取班级，课表信息
+    this.setData({
+      classFieldValue: wx.getStorageSync("classFieldValue"),
+      classSelect: wx.getStorageSync("classSelect"),
+      coursesSchedule: wx.getStorageSync("coursesSchedule"),
+      departmentsOptions: wx.getStorageSync("departmentsOptions")
+    })
+
+    if (this.data.classSelect && 
+      this.data.classFieldValue && 
+      this.data.departmentsOptions &&
+      this.data.classFieldValue.length > 0) {
+      // 跳转到主页
+      wx.switchTab({
+        url: '/pages/index/index',
+      });
+    }
+
     await this.getClassesData();
 
     // 读取用户信息
@@ -75,6 +94,8 @@ Page({
 
     const data = rst.data;
 
+    this.data.departmentsOptions = []
+
     data.map(item => {
       const dep = this.data.departmentsOptions.find(dep => dep.text == item.department);
       if (dep) {
@@ -114,9 +135,9 @@ Page({
       this.setData({
          departmentsOptions: this.data.departmentsOptions
       })
-    })
 
-    console.log('options:', this.data.departmentsOptions)
+      wx.setStorageSync("departmentsOptions", this.data.departmentsOptions)
+    })
   },
 
   onDepartmentClick() {
@@ -146,7 +167,7 @@ Page({
     console.log(fieldValue)
 
     this.setData({
-      fieldValue,
+      classFieldValue: fieldValue,
       classSelect: value,
     })
   },
@@ -185,6 +206,15 @@ Page({
 
     console.log('data', data)
     getApp().coursesSchedule = data;
+
+    //  保存班级名称到本地
+    wx.setStorageSync('classSelect', this.data.classSelect)
+
+    wx.setStorageSync('classFieldValue', this.data.classFieldValue)
+
+    // 保存课表到本地
+    wx.setStorageSync('coursesSchedule', data)
+
     // 跳转到主页
     wx.switchTab({
       url: '/pages/index/index',
