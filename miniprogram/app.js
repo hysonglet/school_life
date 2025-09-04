@@ -7,8 +7,8 @@ promisifyAll(wx, wx.pro);
 
 App({
   /* 服务器地址 */
-  service_url: "https://sgtong.cloud",
-  // service_url: "http://localhost:8080",
+  // service_url: "https://sgtong.cloud",
+  service_url: "http://localhost:8080",
   // service_url: "http://43.136.124.10:8080",
   userinfo: {},
   autoWechatLogin: true,
@@ -21,6 +21,8 @@ App({
   semesterStartDate: "2025-08-11",
   // 从数据库中请求的课程表
   coursesSchedule: [],
+  // 选择的班级
+  classSelect: "",
 
   onLaunch: async function () {
     console.log("onLaunch");
@@ -49,7 +51,7 @@ App({
 
     // this.userinfo = await this.getUserInfo(openid);
 
-    await this.getCoursesSchedule(); // 获取课程表
+    // await this.getCoursesSchedule(); // 获取课程表
 
     // console.log(this.coursesSchedule)
     // console.log("onLaunch end");
@@ -126,8 +128,33 @@ App({
     finally {
     }
   },
+  // 获取班级课表
+  async getClassesSchedule() {
+    try {
+    const rst = await wx.pro.request({
+        url: getApp().service_url + "/class_course",
+        method: "GET",
+        data: {
+          class_name: this.classSelect
+        }
+      })
 
-  // 获取课程表
+      console.log(rst)
+      if (!rst.data) {
+        throw new Error("获取用户信息失败")
+      }
+
+      return rst.data;
+    }
+    catch (e) {
+      console.log(e);
+      throw e;
+    }
+    finally {
+    }
+  },
+
+  // 获取学生课程表
   async getCoursesSchedule() {
     try {
       const sourse_cache = await wx.pro.request({

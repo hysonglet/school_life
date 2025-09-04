@@ -85,7 +85,7 @@ Page({
         return false;
       }
     } catch (e) {
-      console.log(e);
+      console.log('e', e);
       throw e;
       return false;
     } finally {}

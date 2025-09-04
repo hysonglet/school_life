@@ -255,7 +255,7 @@ Page({
 
 
   async onRefresh() {
-    await getApp().getCoursesSchedule();
+    // await getApp().getCoursesSchedule();
     await this._updateCourseList();
     const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
 
@@ -265,7 +265,6 @@ Page({
   },
 
   onCourseInfoShow(event) {
-    // console.log(event)
     const course = event.currentTarget.dataset.index;
     console.log(course)
 
