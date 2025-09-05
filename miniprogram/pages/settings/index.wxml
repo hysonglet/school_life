@@ -39,5 +39,6 @@
           1603668353@qq.com</EMAIL>
       </van-collapse-item>
     </van-collapse>
+    <van-button block type="primary" bind:tap="onClearCache">清除缓存</van-button>
   </view>
 </view>

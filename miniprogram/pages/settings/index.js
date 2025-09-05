@@ -202,6 +202,18 @@ Page({
     }
   },
 
+  onClearCache() {
+    wx.clearStorageSync()
+    wx.showToast({
+      title: '缓存已清除',
+      icon: 'none'
+    })
+
+    wx.navigateTo({
+      url: '/pages/login_by_class/index',
+    })
+  },
+
   /**
    * Called when user click on the top right corner to share
    */
