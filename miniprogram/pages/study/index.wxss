@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
 
-  margin-left: 100rpx;
+  margin-left: 10rpx;
 }
 
 /* 显示周数 */

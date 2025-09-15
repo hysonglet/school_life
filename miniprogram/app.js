@@ -7,9 +7,10 @@ promisifyAll(wx, wx.pro);
 
 App({
   /* 服务器地址 */
-  // service_url: "https://sgtong.cloud",
-  service_url: "http://localhost:8080",
+  service_url: "https://sgtong.cloud",
+  // service_url: "http://localhost:8080",
   // service_url: "http://43.136.124.10:8080",
+  // service_url: "https://sgtong.cloud",
   userinfo: {},
   autoWechatLogin: true,
   isLogin: false,
@@ -25,36 +26,11 @@ App({
   classSelect: "",
 
   onLaunch: async function () {
-    // // 自动登录
-    // if (this.autoWechatLogin == false) {
-    //   return;
-    // }
-
-    // await wx.pro.showLoading({
-    //   title: '同步数据中...'
-    // });
-
-    // const openid = await this.getOpenId();
-    // await wx.pro.hideLoading();
-
-    // if (openid) {
-    //   this.globalData.openid = openid;
-    //   console.log("openid:" + openid);
-    // } else {
-    //   await wx.pro.showToast({
-    //     title: '获取openid失败',
-    //     icon: icon.Error
-    //   })
-    // }
-
-    // this.userinfo = await this.getUserInfo(openid);
-
-    // await this.getCoursesSchedule(); // 获取课程表
-
-    // console.log(this.coursesSchedule)
-    // console.log("onLaunch end");
-
-    // this.launchFinished = true;
+    // 从本地读取班级，课表信息
+    this.classFieldValue = wx.getStorageSync("classFieldValue"),
+    this.classSelect = wx.getStorageSync("classSelect"),
+    this.coursesSchedule = wx.getStorageSync("coursesSchedule"),
+    this.departmentsOptions = wx.getStorageSync("departmentsOptions")
   },
 
   // 获取微信小程序临时code码
@@ -150,27 +126,6 @@ App({
     }
     finally {
     }
-  },
-
-  // 获取学生课程表
-  async getCoursesSchedule() {
-    try {
-      const sourse_cache = await wx.pro.request({
-        url: this.service_url + "/course?" + "student_no=" + this.userinfo.student_no,
-        method: "get"
-      });
-
-      if (!sourse_cache) {
-        throw new Error("获取用户信息失败")
-      }
-
-      this.coursesSchedule = sourse_cache.data;
-    } catch (e) {
-      throw e;
-    }
-    finally {
-    }
-
   }
 
 });

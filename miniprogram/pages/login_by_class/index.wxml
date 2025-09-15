@@ -37,7 +37,11 @@
       <van-cell title="还没有你所在班级/登录异常？" is-link bind:click="OnShowRegisterInfo" />
     <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送学号和姓名或修改密码至
       <email>1603668253@qq.com</email>
-    </van-popup>
+      <van-button type="primary" bind:click="onRefreshClicked">
+      刷新
+      </van-button>
+
+    </van-popup>  
     </view>
   </view>
 </view>

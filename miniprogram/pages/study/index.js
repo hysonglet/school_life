@@ -21,6 +21,8 @@ Page({
     // 显示课程详细信息
     showCourseInfo: false,
     showCourseInfoCountent: {},
+    // 选择的班级
+    classSelect: "",
     // 从数据库中获得的课程表清单
     // TODO：单双周考虑
     coursesSchedule: [],
@@ -196,7 +198,7 @@ Page({
    * Lifecycle function--Called when page is initially rendered
    */
   onReady() {
-
+    
   },
 
   /**
@@ -262,6 +264,12 @@ Page({
     this.setData({
       week_index: week - 1
     })
+
+    this.setData(
+      {
+        classSelect: getApp().classSelect
+      }
+    )
   },
 
   onCourseInfoShow(event) {
