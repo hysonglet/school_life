@@ -7,6 +7,7 @@
     "pages/life/life",
     "pages/personal/personal",
     "pages/settings/index",
+    "pages/webview/index",
     "utils/date.wxs"
   ],
   "window": {

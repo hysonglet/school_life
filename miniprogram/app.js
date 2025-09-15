@@ -31,6 +31,10 @@ App({
     this.classSelect = wx.getStorageSync("classSelect"),
     this.coursesSchedule = wx.getStorageSync("coursesSchedule"),
     this.departmentsOptions = wx.getStorageSync("departmentsOptions")
+
+
+    this.launchFinished = true
+
   },
 
   // 获取微信小程序临时code码

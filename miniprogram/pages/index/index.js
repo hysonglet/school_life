@@ -10,27 +10,7 @@ Page({
   data: {
     todayCourses: [],
     noticeTabActive: 0,
-    announcement_list: [{
-        "images": "http://43.136.124.10:7791/i/2025/09/15/68c7ee5a8b705.png",
-        "desc": "关于举办电子设计大赛的通知",
-        "type": "通知"
-      },
-      {
-        "images": "http://43.136.124.10:7791/i/2025/09/15/68c7ee5a8b705.png",
-        "desc": "热烈祝贺我校获得全国大学生电子设计竞赛一等奖",
-        "type": "新闻"
-      },
-      {
-        "images": "http://43.136.124.10:7791/i/2025/09/15/68c7ee5a8b705.png",
-        "desc": "关于寒假放假的工作安排",
-        "type": "通知"
-      },
-      {
-        "images": "http://43.136.124.10:7791/i/2025/09/15/68c7ee5a8b705.png",
-        "desc": "国家计算机二级考试培训",
-        "type": "广告"
-      }
-    ]
+    announcement_list: []
   },
   async onLoad() {
 
@@ -41,7 +21,11 @@ Page({
 
     console.log("onLoad end");
 
+    // 获取近日课程
     await this.updateTodayCourses();
+
+    // 获取广告
+    await this.getAnnouncement();
   },
 
   onReady: async function () {
@@ -49,11 +33,52 @@ Page({
   },
   onChangeTab(e) {},
   onOpenTipsModal() {},
+
+  async onPullDownRefresh() {
+    await this.getAnnouncement();
+
+    wx.stopPullDownRefresh();
+
+    console.log("广告获取完毕");
+  },
+
+  // 按下图片跳转到图片的链接
+  goToWebPage(e) {
+    const targetUrl = e.currentTarget.dataset.index;
+
+    const mpWeixinRegex = /^https:\/\/mp\.weixin\.qq\.com(\S*)?$/i;
+
+    // 匹配微信公众号的链接才能跳转
+    if (mpWeixinRegex.test(targetUrl)) {
+      wx.navigateTo({
+        url: `/pages/webview/index?url=${targetUrl}`
+      })
+    }
+  },
+
   onTabItemTap: async function(item) {
     console.log("onTabItemTap: " + item.index);
     if (item.index == 0) {
       await this.updateTodayCourses();
     }
+  },
+
+  // 从服务器中获取通知广告
+  async getAnnouncement() {
+    const rst = await wx.pro.request({
+      url: getApp().service_url + "/get_announcement",
+      method: 'GET'
+    })
+
+    const data = rst.data;
+
+    console.log('announcement', data)
+
+    this.setData(
+      {
+        announcement_list: data
+      }
+    )
   },
 
   // 获取今日课程

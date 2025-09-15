@@ -52,6 +52,8 @@ Page({
 
   async onRefreshClicked() {
     await this.getClassesData();
+
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -77,7 +79,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  async onPullDownRefresh() {
+    await this.getClassesData();
+    wx.stopPullDownRefresh();
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -96,6 +101,13 @@ Page({
       method: "GET",
     })
 
+    if (rst.statusCode != 200) {
+      await wx.pro.showToast({
+        title: "数据获取失败: " + rst.statusCode,
+        icon: "none"
+      })
+      return 
+    }
     const data = rst.data;
 
     this.data.departmentsOptions = []
@@ -223,6 +235,6 @@ Page({
     wx.switchTab({
       url: '/pages/index/index',
     });
-  }
+  },
 
 });
