@@ -38,15 +38,16 @@
     "compileWorklet": false,
     "minifyWXML": true,
     "localPlugins": false,
-    "condition": false,
+    "condition": true,
     "swc": false,
     "disableSWC": true,
     "disableUseStrict": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true
   },
   "appid": "wxec5fc1c0460c53b9",
   "projectname": "quickstart-wx-cloud",
-  "libVersion": "latest",
+  "libVersion": "3.8.11",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {
     "search": {

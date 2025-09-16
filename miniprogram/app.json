@@ -1,13 +1,62 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/login_by_class/index",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/study/index",
+    "pages/life/life",
+    "pages/personal/personal",
+    "pages/settings/index",
+    "pages/webview/index",
+    "utils/date.wxs"
   ],
   "window": {
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
-    "navigationStyle":"custom"
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "主页",
+        "pagePath": "pages/index/index",
+        "iconPath": "resources/images/main.png",
+        "selectedIconPath": "resources/images/main_active.png"
+      },
+      {
+        "text": "课程表",
+        "pagePath": "pages/study/index",
+        "iconPath": "resources/images/study.png",
+        "selectedIconPath": "resources/images/study_active.png"
+      },
+      {
+        "text": "设置",
+        "pagePath": "pages/settings/index",
+        "iconPath": "resources/images/personal.png",
+        "selectedIconPath": "resources/images/personal_active.png"
+      }
+    ]
+  },
+  "component": "true",
+  "usingComponents": {
+    "van-cascader": "@vant/weapp/cascader/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-divider": "@vant/weapp/divider/index"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2",
   "lazyCodeLoading": "requiredComponents"
 }

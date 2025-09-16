@@ -1,0 +1,47 @@
+<view class="app-page">
+  <view class="title-header">
+    <view>
+      <image src="/resources/school.png"></image>
+    </view>
+    <text>校园生活</text>
+    <text>让校园生活更便捷</text>
+  </view>
+
+  <view class="page-body">
+    <view class="select-container">
+      <van-field
+        value="{{ classFieldValue }}"
+        is-link
+        readonly
+        label="班级"
+        placeholder="请选择所在班级"
+        bind:tap="onDepartmentClick"
+      />
+      <van-popup show="{{ departmentShow }}" round position="bottom">
+        <van-cascader
+          wx:if="{{ departmentShow }}"
+          value="{{ cascaderValue }}"
+          title="请选择所在部门"
+          options="{{ departmentsOptions }}"
+          bind:close="onDepartmentClose"
+          bind:finish="onDepartmentFinish"
+        />
+      </van-popup>
+    </view>
+
+    <van-button custom-class="login-button" type="primary" bind:click="onLoginButtonClick" plain>登录
+    </van-button>
+
+
+    <view class="register">
+      <van-cell title="还没有你所在班级/数据异常/无法登录？" is-link bind:click="OnShowRegisterInfo" />
+    <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送班级名称，专业或故障截图信息到邮箱。
+      <email>1603668253@qq.com</email>
+      <van-button type="primary" bind:click="onRefreshClicked">
+      刷新
+      </van-button>
+
+    </van-popup>  
+    </view>
+  </view>
+</view>

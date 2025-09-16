@@ -1,83 +1,111 @@
-const { init } = require('@cloudbase/wx-cloud-client-sdk')
+const {
+  init
+} = require('@cloudbase/wx-cloud-client-sdk')
 const client = init(wx.cloud)
 const models = client.models
+
+import * as utils from "../../utils/date"
+
 Page({
   data: {
-    menuPosition: wx.getMenuButtonBoundingClientRect(),
-    menuItems: [
-      {
-        key: 1,
-        title: "小店管理"
-      },
-      {
-        key: 2,
-        title: "商品管理"
-      }
-    ],
-    selectedItemIndex: 1,
-    tipShow:false,
-    title:"",
-    desc:"",
-    url:"",
-    isPreview:false,
-    storeList:[],
-    storeTotal:0,
-    productList:[],
-    productTotal:0
+    todayCourses: [],
+    noticeTabActive: 0,
+    announcement_list: []
   },
-  async onLoad(){
-    try{
-      wx.showLoading({
-        title: '',
-      })
-      // 查询店铺首页了列表
-      const {data:{records:storeList,total:storeTotal}}  = await models.store_home_3bzb1t4.list({
-        filter: {
-          where: {}
-        },
-        pageSize: 10, // 分页大小，建议指定，如需设置为其它值，需要和 pageNumber 配合使用，两者同时指定才会生效
-        pageNumber: 1, // 第几页
-        getCount: true, // 开启用来获取总数
-      });
-      // 查询商品列表
-      const {data:{records:productList,total:productTotal}}  = await models.store_product_zh57lp5.list({
-        filter: {
-          where: {}
-        },
-        pageSize: 10, // 分页大小，建议指定，如需设置为其它值，需要和 pageNumber 配合使用，两者同时指定才会生效
-        pageNumber: 1, // 第几页
-        getCount: true, // 开启用来获取总数
-      });
-      wx.hideLoading()
-      this.setData({
-        storeList,
-        storeTotal,
-        productList,
-        productTotal,
-        isPreview:false,
-        title:"使用云模板管理微信小店",
-        desc:"您已成功配置后台数据，可以打开下方地址对微信小店及商品进行增删改查等数据管理，配置后的数据将同步到该模板",
-        url:"https://tcb.cloud.tencent.com/cloud-admin?_jump_source=wxide_mp2store#/management/content-mgr/index"
-      })
-    }catch(e){
-      wx.hideLoading()
-      this.setData({
-        isPreview:true,
-        title:"使用云模板快速接入微信小店",
-        desc:"当前为体验数据，切换为真实数据请复制下方链接并在浏览器中打开，帮您快速接入微信小店，管理小店及商品数据",
-        url:"https://tcb.cloud.tencent.com/cloud-template/detail?appName=wx_shop&from=wxide_mp2store"
+  async onLoad() {
+
+    while (!getApp().launchFinished) {
+      // 等待 100ms 再检查（避免死循环）
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    console.log("onLoad end");
+
+    // 获取近日课程
+    await this.updateTodayCourses();
+
+    // 获取广告
+    await this.getAnnouncement();
+  },
+
+  onReady: async function () {
+    await this.updateTodayCourses();
+  },
+  onChangeTab(e) {},
+  onOpenTipsModal() {},
+
+  async onPullDownRefresh() {
+    await this.getAnnouncement();
+
+    wx.stopPullDownRefresh();
+
+    console.log("广告获取完毕");
+  },
+
+  imageLoadError(e) {
+    console.log('image load error: ', e)
+  },
+
+  // 按下图片跳转到图片的链接
+  goToWebPage(e) {
+    const targetUrl = e.currentTarget.dataset.index;
+
+    const mpWeixinRegex = /^https:\/\/mp\.weixin\.qq\.com(\S*)?$/i;
+
+    // 匹配微信公众号的链接才能跳转
+    if (mpWeixinRegex.test(targetUrl)) {
+      wx.navigateTo({
+        url: `/pages/webview/index?url=${targetUrl}`
       })
     }
   },
-  onChangeTab(e) {
-    const {key}=e.target.dataset
-    this.setData({
-      selectedItemIndex:key
-    })
+
+  onTabItemTap: async function(item) {
+    console.log("onTabItemTap: " + item.index);
+    if (item.index == 0) {
+      await this.updateTodayCourses();
+    }
   },
-  onOpenTipsModal(){
+
+  // 从服务器中获取通知广告
+  async getAnnouncement() {
+    const rst = await wx.pro.request({
+      url: getApp().service_url + "/get_announcement",
+      method: 'GET'
+    })
+
+    const data = rst.data;
+
+    console.log('announcement', data)
+
+    this.setData(
+      {
+        announcement_list: data
+      }
+    )
+  },
+
+  // 获取今日课程
+  async updateTodayCourses() {
+    const app = getApp();
+
+    const today = new Date();
+    const semesterStartDate = new Date(app.semesterStartDate);
+
+    const todayCoursesCache = app.coursesSchedule.filter(courses => {
+      const courseDate = new Date(semesterStartDate);
+      courseDate.setDate(semesterStartDate.getDate() + (courses.week_start - 1) * 7 + (courses.week - 1));
+
+      const nowWeek = utils.getWeekNumber(semesterStartDate, today);
+      return (courses.week_start <= nowWeek) &&
+        (courses.week_end >= nowWeek) &&
+        (today.getDay() == courses.week);
+    })
+
+    console.log(todayCoursesCache);
+
     this.setData({
-      tipShow:true
+      todayCourses: todayCoursesCache
     })
   }
 });

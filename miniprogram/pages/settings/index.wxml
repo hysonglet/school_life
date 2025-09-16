@@ -1,0 +1,44 @@
+<view class="app-page">
+  <view class="page-title">
+    <text> 设置 </text>
+  </view>
+
+  <!-- <van-divider></van-divider> -->
+  <view class="mine-container">
+    <view class="select-container">
+      <van-field
+        value="{{ classFieldValue }}"
+        is-link
+        readonly
+        label="班级"
+        placeholder="请选择所在班级"
+        bind:tap="onDepartmentClick"
+      />
+      <van-popup show="{{ departmentShow }}" round position="bottom">
+        <van-cascader
+          wx:if="{{ departmentShow }}"
+          value="{{ cascaderValue }}"
+          title="请选择所在部门"
+          options="{{ departmentsOptions }}"
+          bind:close="onDepartmentClose"
+          bind:finish="onDepartmentFinish"
+        />
+      </van-popup>
+    </view>
+    <van-collapse accordion value="{{ collapseActiveName }}" bind:change="onCollapseChange">
+      <van-collapse-item title="关于本程序" name="2">
+        SG通为校内师生软件实践课程团队开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，后台数据为校内同学的贡献，一切行为与官方无关。
+      </van-collapse-item>
+      <van-collapse-item title="团队介绍" name="3">
+        <text>创始人：彭老师
+          参与开发：彭老师, 曾老师, 覃同学, 颜同学
+        </text>
+      </van-collapse-item>
+      <van-collapse-item title="BUG提交" name="4">
+        任何BUG问题及优化、功能建议可发送邮件到 <EMAIL>
+          1603668353@qq.com</EMAIL>
+      </van-collapse-item>
+    </van-collapse>
+    <van-button block type="primary" bind:tap="onClearCache">清除缓存</van-button>
+  </view>
+</view>

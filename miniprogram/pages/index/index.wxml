@@ -1,43 +1,39 @@
 <!--index.wxml-->
-<view>
-  <view style="margin-top: {{menuPosition.top}}px; height: {{menuPosition.height}}px;line-height: {{menuPosition.height}}px;" class="page-title">小程序打开微信小店</view>
-  <view class="banner-container">
-    <image src="../../images/banner.png" mode="aspectFill" class="banner" />
+<view class="app-page">
+  <view class="page-title">
+    <text>校园生活</text>
   </view>
-  <view class="tabs">
-    <view class="tabs-header">
-      <view wx:for="{{menuItems}}" wx:key="key" class="{{selectedItemIndex===item.key?'tabs-header-item-selected':'tabs-header-item-normal'}}" data-key="{{item.key}}" bind:tap="onChangeTab">
-        {{item.title}}
+  <!-- 显示通知和广告轮播 -->
+  <swiper class="main_swiper" indicator-dots="true" autoplay="true" duration="1000" circular="true">
+    <swiper-item wx:for="{{announcement_list}}" wx:key="index" class="main_swiper_item">
+      <view>
+        <image class="main-swiper-image" 
+        mode="widthFix" 
+        src="{{item.image}}" 
+        data-index="{{item.url}}"
+        binderror="imageLoadError"
+        bind:tap="goToWebPage"></image>
+        <text class="main-swiper-text">{{item.kind}}: {{item.description}}</text>
       </view>
-    </view>
-    <view class="tabs-body">
-      <block wx:if="{{selectedItemIndex===1}}">
-        <block wx:if="{{isPreview}}">
-          <image bind:tap="onOpenTipsModal" src="../../images/shop_home.png" mode="widthFix" style="width: 100%;"></image>
-        </block>
-        <block wx:else>
-          <view wx:if="{{storeList.length===0}}" class="empty-tip">
-            暂无小店信息，可前往<text bind:tap="onOpenTipsModal" style="text-decoration: underline;color: #0052D9;">云后台内容管理</text>进行配置
+    </swiper-item>
+  </swiper>
+
+  <view id="announcement_view">
+    <van-divider></van-divider>
+    <van-tabs swipeable="true" active="{{noticeTabActive}}" type="line">
+      <van-tab title="今日课表">
+        <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
+          <view class="today_courses_item" wx:for="{{todayCourses}}" wx:key="index">
+            <text>{{item.object}}</text>
+            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration:''}}节
+            {{item.address}}</text>
           </view>
-          <block wx:for="{{storeList}}" wx:key="appid">
-            <store-home appid="{{item.appid}}"></store-home>
-          </block>
-        </block>
-      </block>
-      <block wx:if="{{selectedItemIndex===2}}">
-        <block wx:if="{{isPreview}}">
-          <image bind:tap="onOpenTipsModal" src="../../images/shop_product.png" mode="widthFix" style="width: 100%;">商品展示（预览数据）</image>
-        </block>
-        <block wx:else>
-          <view wx:if="{{productList.length===0}}" class="empty-tip">
-              暂无商品信息，可前往<text bind:tap="onOpenTipsModal" style="text-decoration: underline; color: #0052D9;">云后台内容管理</text>进行配置
-          </view>
-          <block wx:for="{{productList}}" wx:key="product_id">
-            <store-product appid="{{item.appid}}" product-id="{{item.product_id}}" product-promotion-link="{{item.product_promotion_link}}"></store-product>
-          </block>
-        </block>
-      </block>
-    </view>
+        </view>
+        <view wx:else>
+          暂无今日课表
+        </view>
+      </van-tab>
+      <van-tab title="生活" disabled>生活</van-tab>
+    </van-tabs>
   </view>
-  <tips-modal tipShow="{{tipShow}}" title="{{title}}" desc="{{desc}}" url="{{url}}"></tips-modal>
 </view>
