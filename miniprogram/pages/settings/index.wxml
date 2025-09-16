@@ -31,7 +31,7 @@
       </van-collapse-item>
       <van-collapse-item title="团队介绍" name="3">
         <text>创始人：彭老师
-          参与开发：彭老师，覃同学，颜同学
+          参与开发：彭老师, 曾老师, 覃同学, 颜同学
         </text>
       </van-collapse-item>
       <van-collapse-item title="BUG提交" name="4">
