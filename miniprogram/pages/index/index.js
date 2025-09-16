@@ -42,6 +42,10 @@ Page({
     console.log("广告获取完毕");
   },
 
+  imageLoadError(e) {
+    console.log('image load error: ', e)
+  },
+
   // 按下图片跳转到图片的链接
   goToWebPage(e) {
     const targetUrl = e.currentTarget.dataset.index;

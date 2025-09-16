@@ -7,10 +7,11 @@
   <swiper class="main_swiper" indicator-dots="true" autoplay="true" duration="1000" circular="true">
     <swiper-item wx:for="{{announcement_list}}" wx:key="index" class="main_swiper_item">
       <view>
-        <!-- mode="widthFix"  -->
         <image class="main-swiper-image" 
+        mode="widthFix" 
         src="{{item.image}}" 
         data-index="{{item.url}}"
+        binderror="imageLoadError"
         bind:tap="goToWebPage"></image>
         <text class="main-swiper-text">{{item.kind}}: {{item.description}}</text>
       </view>
