@@ -7,8 +7,7 @@
       <van-dropdown-item title="第{{week_index + 1}}周" value="{{week_index}}" options="{{weeks_array}}"
         bind:change="onWeekChange" />
     </van-dropdown-menu>
-
-    <view wx:if="{{selectRoleKindNumber == 1}}">{{classSelect}}</view>
+    <view>{{classSelect}}</view>
   </view>
 </view>
 
@@ -43,9 +42,7 @@
             wx:if="{{((weekIndex + 1) >= item.week_start) && ((weekIndex + 1) <= item.week_end) && ((item.week_type === 'both') || ((item.week_type === 'single') &&((weekIndex + 1)%2 === 1)) || ((item.week_type === 'double') && ((weekIndex + 1)%2 === 0)))}}"
             style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object+item.class]}};">
             <!-- 课程信息 -->
-            <text>{{item.object}}
-              ({{item.teacher}})
-              @{{item.address}}
+            <text>{{item.object}}{{item.Object}}({{selectRoleKindNumber === 1 ? item.teacher:item.class}})@{{ item.address }}
             </text>
           </view>
         </swiper-item>
@@ -56,6 +53,7 @@
     <van-popup show="{{showCourseInfo}}" position="bottom" closeable bind:close="onCourseInfoClose">
       <view class="course-info-detail">
         <text>课程信息:</text>
+        <text>班 级: {{showCourseInfoCountent.class}}</text>
         <text>课程名: {{showCourseInfoCountent.object}}</text>
         <text>起始周: 第{{showCourseInfoCountent.week_start}}周</text>
         <text>结束周: 第{{showCourseInfoCountent.week_end}}周</text>
@@ -68,7 +66,7 @@
           1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start - 1 +
           showCourseInfoCountent.class_duration:''}}节
 
-          </text>
+        </text>
       </view>
     </van-popup>
   </view>

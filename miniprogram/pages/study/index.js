@@ -127,10 +127,9 @@ Page({
       "#00FFDE"
     ];
 
-    const selectRoleKindNumber = wx.getStorageSync("selectRoleKindNumber")
-
     this.setData({
-      coursesSchedule: getApp().coursesSchedule
+      coursesSchedule: getApp().coursesSchedule,
+      selectRoleKindNumber: wx.getStorageSync("selectRoleKindNumber")
     })
 
     const courseColorCache = {};
@@ -180,7 +179,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: async function (options) {
-    this.data.selectRoleKindNumber = getApp().selectRoleKindNumber;
 
     this.updateWeekDays()
 
