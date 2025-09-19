@@ -91,7 +91,7 @@ Page({
 
     const today = new Date();
     const semesterStartDate = new Date(app.semesterStartDate);
-
+    
     const todayCoursesCache = app.coursesSchedule.filter(courses => {
       const courseDate = new Date(semesterStartDate);
       courseDate.setDate(semesterStartDate.getDate() + (courses.week_start - 1) * 7 + (courses.week - 1));
@@ -102,10 +102,14 @@ Page({
         (today.getDay() == courses.week);
     })
 
-    console.log(todayCoursesCache);
+    
+    const uniqueArray = [...new Map(todayCoursesCache.map(item => [(item.class_start), item])).values()];
+    // console.log('todayCoursesCache', todayCoursesCache);
+    // console.log('uniqueArray', uniqueArray)
+
 
     this.setData({
-      todayCourses: todayCoursesCache
+      todayCourses: uniqueArray
     })
   }
 });
