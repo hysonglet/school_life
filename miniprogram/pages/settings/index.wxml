@@ -5,14 +5,6 @@
 
   <!-- <van-divider></van-divider> -->
   <view class="mine-container">
-    <view class="select-container" wx:if="{{selectRoleKindNumber == 1}}">
-      <van-field value="{{ classFieldValue }}" is-link readonly label="班级" placeholder="请选择所在班级"
-        bind:tap="onDepartmentClick" />
-      <van-popup show="{{ departmentShow }}" round position="bottom">
-        <van-cascader wx:if="{{ departmentShow }}" value="{{ cascaderValue }}" title="请选择所在部门"
-          options="{{ departmentsOptions }}" bind:close="onDepartmentClose" bind:finish="onDepartmentFinish" />
-      </van-popup>
-    </view>
     <van-collapse accordion value="{{ collapseActiveName }}" bind:change="onCollapseChange">
       <van-collapse-item title="关于本程序" name="2">
         SG通为校内师生软件实践课程团队开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，后台数据为校内同学的贡献，一切行为与官方无关。
@@ -30,12 +22,17 @@
         <view>
           <view>
             <text>V1.0.0 2025-09-17</text>
-            <text>\n 1. 学生端查询入口</text>
+            <text>\n 1. 学生端查询入口
+
+            </text>
           </view>
           <view>
             <text>V1.1.0 2025-09-20</text>
             <text>\n 1. 增加教师端查询入口</text>
-            <text>\n 2. 修复今日课表的节次显示错误的bug</text>
+            <text>\n 2. 修复学生端当日课表的节次显示错误的bug</text>
+            <text>\n 3. 修复教室端查看当天课表内容重复的bug
+            
+            </text>
           </view>
         </view>
       </van-collapse-item>
