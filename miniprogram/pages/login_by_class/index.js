@@ -7,7 +7,8 @@ Page({
     departmentShow: false,
     classSelect: "",
     classFieldValue: "",
-    departmentsOptions: []
+    departmentsOptions: [],
+    selectRoleKindNumber: 1, // 1: 学生，2:老师
   },
 
   /**
@@ -19,20 +20,20 @@ Page({
       classFieldValue: wx.getStorageSync("classFieldValue"),
       classSelect: wx.getStorageSync("classSelect"),
       coursesSchedule: wx.getStorageSync("coursesSchedule"),
-      departmentsOptions: wx.getStorageSync("departmentsOptions")
+      departmentsOptions: wx.getStorageSync("departmentsOptions"),
+      selectRoleKindNumber: wx.getStorageSync("selectRoleKindNumber")
     })
 
-    if (this.data.classSelect && 
-      this.data.classFieldValue && 
+    if (this.data.classSelect &&
+      this.data.classFieldValue &&
       this.data.departmentsOptions &&
-      this.data.classFieldValue.length > 0) {
+      this.data.classFieldValue.length > 0 &&
+      ((this.data.selectRoleKindNumber === 1) || (this.data.selectRoleKindNumber === 2))) {
       // 跳转到主页
       wx.switchTab({
         url: '/pages/index/index',
       });
     }
-
-    await this.getClassesData();
 
     // 读取用户信息
     const userinfo = wx.getStorageSync("userinfo");
@@ -106,7 +107,7 @@ Page({
         title: "数据获取失败: " + rst.statusCode,
         icon: "none"
       })
-      return 
+      return
     }
     const data = rst.data;
 
@@ -122,8 +123,7 @@ Page({
             text: item.class,
             value: item.class
           })
-        }
-        else {
+        } else {
           dep.children.push({
             text: item.major,
             value: item.major,
@@ -149,16 +149,50 @@ Page({
       }
 
       this.setData({
-         departmentsOptions: this.data.departmentsOptions
+        departmentsOptions: this.data.departmentsOptions
       })
 
       wx.setStorageSync("departmentsOptions", this.data.departmentsOptions)
     })
   },
 
-  onDepartmentClick() {
+  // 获取所有部门的清单
+  async getDepartmentData() {
+    const rst = await wx.pro.request({
+      url: getApp().service_url + "/departments",
+      method: "GET",
+    })
+
+    if (rst.statusCode != 200) {
+      await wx.pro.showToast({
+        title: "数据获取失败: " + rst.statusCode,
+        icon: "none"
+      })
+      return
+    }
+    const data = rst.data;
+
+    this.data.departmentsOptions = []
+
+    data.map(item => {
+      this.data.departmentsOptions.push({
+        text: item.department,
+        value: item.department
+      })
+
+      this.setData({
+        departmentsOptions: this.data.departmentsOptions
+      })
+
+      wx.setStorageSync("departmentsOptions", this.data.departmentsOptions)
+    })
+  },
+
+  async onDepartmentClick() {
+    await this.getClassesData();
+
     this.setData({
-      departmentShow: true
+      departmentShow: true,
     })
   },
 
@@ -168,8 +202,8 @@ Page({
     })
   },
 
+  // 学生角色下选择班级结束事件
   onDepartmentFinish(e) {
-    // console.log(e)
     const {
       selectedOptions,
       value
@@ -178,14 +212,37 @@ Page({
       .map((option) => option.text || option.name)
       .join('/');
 
-    console.log(selectedOptions);
-    console.log(value)
-    console.log(fieldValue)
-
     this.setData({
       classFieldValue: fieldValue,
       classSelect: value,
+      selectRoleKindNumber: 1,
     })
+
+    wx.setStorageSync("selectRoleKindNumber", 1)
+  },
+
+  async onteacherDepartmentSelectClick() {
+    // 请求老师选择所需的部门选择数据
+    await this.getDepartmentData()
+
+    this.setData({
+      teacherDepartmentShow: true,
+    })
+  },
+
+  onteacherDepartmentSelectClose() {
+    this.setData({
+      teacherDepartmentShow: false
+    })
+  },
+
+  onteacherDepartmentSelectFinish(e) {
+    console.info(e.detail)
+    this.setData({
+      classFieldValue: e.detail.value,
+      selectRoleKindNumber: 2
+    })
+    wx.setStorageSync("selectRoleKindNumber", 2)
   },
 
   OnShowRegisterInfo() {
@@ -200,24 +257,77 @@ Page({
     })
   },
 
+  onCollapseRuleSelectChange(e) {
+
+    if (e.detail != 1 && e.detail != 2) {
+      return
+    }
+    
+    // 如果用户没有切换角色，则不更新班级或教师填写的内容
+    if(this.data.selectRoleKindNumber != e.detail) {
+      this.setData({
+        classFieldValue: "",
+        classSelect: "",
+      })
+    }
+
+    this.setData({
+      selectRoleKindNumber: e.detail
+    })
+  },
+
   async onLoginButtonClick() {
-    if (!this.data.classSelect || this.data.classSelect.length == 0) {
-      wx.showToast({
-        title: '请选择班级',
-        icon: 'none'
+    // 当前是学生模式
+    if (this.data.selectRoleKindNumber == 1) {
+      if (!this.data.classSelect || this.data.classSelect.length == 0) {
+        wx.showToast({
+          title: '请选择班级',
+          icon: 'none'
         })
-      return;
+        return;
+      }
+    } else {
+      // 当前是老师模式
+      if (!this.data.classFieldValue || this.data.classFieldValue.length == 0) {
+        wx.showToast({
+          title: '请选择部门',
+          icon: 'none'
+        })
+        return;
+      }
+
+      if (!this.data.classSelect || this.data.classSelect.length == 0) {
+        wx.showToast({
+          title: '请输入您的姓名',
+          icon: 'none'
+        })
+        return;
+      }
     }
 
     getApp().classSelect = this.data.classSelect;
-    const data = await getApp().getClassesSchedule();
 
-    if (data.length == 0) {
-      wx.showToast({
-        title: '该班级课表暂未录入',
-        icon: 'none'
+    let data;
+    if (this.data.selectRoleKindNumber == 1) {
+      data = await getApp().getClassesSchedule(this.data.classSelect);
+
+      if (data.length == 0) {
+        wx.showToast({
+          title: '该班级课表暂未录入',
+          icon: 'none'
         })
-      return;
+        return;
+      }
+    } else {
+      data = await getApp().getTeacherSchedule(this.data.classSelect, this.data.classFieldValue)
+
+      if (data.length == 0) {
+        wx.showToast({
+          title: '您的信息暂未录入或部门选择错误',
+          icon: 'none'
+        })
+        return;
+      }
     }
 
     console.log('data', data)

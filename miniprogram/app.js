@@ -7,10 +7,8 @@ promisifyAll(wx, wx.pro);
 
 App({
   /* 服务器地址 */
-  service_url: "https://sgtong.cloud",
-  // service_url: "http://localhost:8080",
-  // service_url: "http://43.136.124.10:8080",
   // service_url: "https://sgtong.cloud",
+  service_url: "http://localhost:8080",
   userinfo: {},
   autoWechatLogin: true,
   isLogin: false,
@@ -31,7 +29,6 @@ App({
     this.classSelect = wx.getStorageSync("classSelect"),
     this.coursesSchedule = wx.getStorageSync("coursesSchedule"),
     this.departmentsOptions = wx.getStorageSync("departmentsOptions")
-
 
     this.launchFinished = true
 
@@ -107,13 +104,13 @@ App({
     }
   },
   // 获取班级课表
-  async getClassesSchedule() {
+  async getClassesSchedule(class_name) {
     try {
     const rst = await wx.pro.request({
         url: getApp().service_url + "/class_course",
         method: "GET",
         data: {
-          class_name: this.classSelect
+          class_name: class_name
         }
       })
 
@@ -130,6 +127,34 @@ App({
     }
     finally {
     }
-  }
+  },
+
+  // 获取教师课表
+  async getTeacherSchedule(teacher_name, department) {
+    try {
+    const rst = await wx.pro.request({
+        url: getApp().service_url + "/teacher_course",
+        method: "GET",
+        data: {
+          teacher_name: teacher_name,
+          department_name: department
+        }
+      })
+
+      console.log(rst)
+      if (!rst.data) {
+        throw new Error("获取用户信息失败")
+      }
+
+      return rst.data;
+    }
+    catch (e) {
+      console.log(e);
+      throw e;
+    }
+    finally {
+    }
+  },
+
 
 });

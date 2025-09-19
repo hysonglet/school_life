@@ -25,7 +25,7 @@
         <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
           <view class="today_courses_item" wx:for="{{todayCourses}}" wx:key="index">
             <text>{{item.object}}</text>
-            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration:''}}节
+            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration - 1:''}}节
             {{item.address}}</text>
           </view>
         </view>

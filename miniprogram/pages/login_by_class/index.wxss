@@ -82,3 +82,21 @@
   margin-top: auto;
   margin-bottom: 10rpx;
 }
+
+.teacher-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-left: 7%;
+  margin-bottom: 20rpx;
+}
+
+.teacher-name :nth-child(2) {
+  width: 60%;
+
+  margin-left: 15%;
+
+  text-align: left;
+}

@@ -8,14 +8,14 @@ Page({
     departmentShow: false,
     classSelect: "",
     classFieldValue: "",
-    departmentsOptions: []
+    departmentsOptions: [],
+    selectRoleKindNumber: 1,
   },
 
   /**
    * Lifecyclei function--Called when page load
    */
   onLoad(options) {
-
     const app = getApp();
 
     // 从本地读取班级，课表信息
@@ -23,7 +23,8 @@ Page({
       classFieldValue: wx.getStorageSync("classFieldValue"),
       classSelect: wx.getStorageSync("classSelect"),
       coursesSchedule: wx.getStorageSync("coursesSchedule"),
-      departmentsOptions: wx.getStorageSync("departmentsOptions")
+      departmentsOptions: wx.getStorageSync("departmentsOptions"),
+      selectRoleKindNumber: wx.getStorageSync("selectRoleKindNumber")
     })
 
     console.log('departmentsOptions', this.data.departmentsOptions)
@@ -179,7 +180,7 @@ Page({
     console.log(fieldValue)
 
     getApp().classSelect = value;
-    const data = await getApp().getClassesSchedule();
+    const data = await getApp().getClassesSchedule(value);
     if (data.length == 0) {
       wx.showToast({
           title: '该班级暂时未录入课表',

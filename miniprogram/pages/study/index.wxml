@@ -1,13 +1,14 @@
 <view class="header">
   <image class="refresh-image" src="/resources/refresh.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false"
-    binderror="" bindload="" bind:tap="onRefresh"/>
+    binderror="" bindload="" bind:tap="onRefresh" />
 
   <view class="header-title">
     <van-dropdown-menu custom-class="custom-dropdown-menu">
       <van-dropdown-item title="第{{week_index + 1}}周" value="{{week_index}}" options="{{weeks_array}}"
         bind:change="onWeekChange" />
     </van-dropdown-menu>
-    <view>{{classSelect}}</view>
+
+    <view wx:if="{{selectRoleKindNumber == 1}}">{{classSelect}}</view>
   </view>
 </view>
 
@@ -36,16 +37,14 @@
         <!-- 每周的父控件 -->
         <swiper-item class="swiper-item">
           <!-- 绘制课程块 -->
-          <!-- TODO 单双周考虑优化 -->
-          <view class="class-item" 
-          bind:tap="onCourseInfoShow" data-index="{{item}}"
-          wx:for="{{coursesSchedule}}" wx:key="class_index" 
-          wx:for-index="class_index"
+
+          <view class="class-item" bind:tap="onCourseInfoShow" data-index="{{item}}" wx:for="{{coursesSchedule}}"
+            wx:key="class_index" wx:for-index="class_index"
             wx:if="{{((weekIndex + 1) >= item.week_start) && ((weekIndex + 1) <= item.week_end) && ((item.week_type === 'both') || ((item.week_type === 'single') &&((weekIndex + 1)%2 === 1)) || ((item.week_type === 'double') && ((weekIndex + 1)%2 === 0)))}}"
-            style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object]}};">
+            style="grid-column: {{item.week}}/{{item.week + 1}}; grid-row: {{item.class_start}}/{{item.class_duration + item.class_start}}; background: {{courseColor[item.object+item.class]}};">
             <!-- 课程信息 -->
             <text>{{item.object}}
-            ({{item.teacher}})
+              ({{item.teacher}})
               @{{item.address}}
             </text>
           </view>
@@ -54,20 +53,20 @@
     </swiper>
 
     <!-- 显示课程信息 -->
-    <van-popup show="{{showCourseInfo}}" 
-    position="bottom"
-    closeable
-    bind:close="onCourseInfoClose">
+    <van-popup show="{{showCourseInfo}}" position="bottom" closeable bind:close="onCourseInfoClose">
       <view class="course-info-detail">
         <text>课程信息:</text>
         <text>课程名: {{showCourseInfoCountent.object}}</text>
         <text>起始周: 第{{showCourseInfoCountent.week_start}}周</text>
         <text>结束周: 第{{showCourseInfoCountent.week_end}}周</text>
-        <text wx:if="{{showCourseInfoCountent.week_type != 'both'}}">单双周: {{showCourseInfoCountent.week_type === 'single'? '单周':'双周'}}</text>
-        <text>教  师: {{showCourseInfoCountent.teacher}}</text>
-        <text>教  室: {{showCourseInfoCountent.address}}</text>
+        <text wx:if="{{showCourseInfoCountent.week_type != 'both'}}">单双周:
+          {{showCourseInfoCountent.week_type === 'single'? '单周':'双周'}}</text>
+        <text>教 师: {{showCourseInfoCountent.teacher}}</text>
+        <text>教 室: {{showCourseInfoCountent.address}}</text>
         <!-- <text>星  期 : {{utils.indexToWeekDay(showCourseInfoCountent.week)}}</text> -->
-        <text>时  间: 第{{showCourseInfoCountent.class_start}}{{showCourseInfoCountent.class_duration > 1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start - 1 + showCourseInfoCountent.class_duration:''}}节</text>
+        <text>时 间: 第{{showCourseInfoCountent.class_start}}{{showCourseInfoCountent.class_duration >
+          1?'~':''}}{{showCourseInfoCountent.class_duration > 1? showCourseInfoCountent.class_start - 1 +
+          showCourseInfoCountent.class_duration:''}}节</text>
       </view>
     </van-popup>
   </view>

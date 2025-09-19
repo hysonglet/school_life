@@ -21,6 +21,7 @@ Page({
     // 显示课程详细信息
     showCourseInfo: false,
     showCourseInfoCountent: {},
+    selectRoleKindNumber: 1, // 1: 学生， 2:老师
     // 选择的班级
     classSelect: "",
     // 从数据库中获得的课程表清单
@@ -29,40 +30,40 @@ Page({
     curriculum_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     // 课程表的日期显示列表
     week_days: [{
-      week: "周一",
-      is_today: true,
-      day: 1
-    },
-    {
-      week: "周二",
-      is_today: false,
-      day: 2
-    },
-    {
-      week: "周三",
-      is_today: false,
-      day: 3
-    },
-    {
-      week: "周四",
-      is_today: false,
-      day: 4
-    },
-    {
-      week: "周五",
-      is_today: false,
-      day: 5
-    },
-    {
-      week: "周六",
-      is_today: false,
-      day: 6
-    },
-    {
-      week: "周日",
-      is_today: false,
-      day: 7
-    },
+        week: "周一",
+        is_today: true,
+        day: 1
+      },
+      {
+        week: "周二",
+        is_today: false,
+        day: 2
+      },
+      {
+        week: "周三",
+        is_today: false,
+        day: 3
+      },
+      {
+        week: "周四",
+        is_today: false,
+        day: 4
+      },
+      {
+        week: "周五",
+        is_today: false,
+        day: 5
+      },
+      {
+        week: "周六",
+        is_today: false,
+        day: 6
+      },
+      {
+        week: "周日",
+        is_today: false,
+        day: 7
+      },
     ]
   },
 
@@ -126,16 +127,22 @@ Page({
       "#00FFDE"
     ];
 
+    const selectRoleKindNumber = wx.getStorageSync("selectRoleKindNumber")
+
     this.setData({
       coursesSchedule: getApp().coursesSchedule
     })
 
-    const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object))];
-
     const courseColorCache = {};
+
+
+    console.log(this.data.coursesSchedule)
+    const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object+course.class))];
+
     object_list.forEach((courseName, index) => {
       courseColorCache[courseName] = colorList[index % colorList.length];
     })
+
 
     this.setData({
       courseColor: courseColorCache,
@@ -173,14 +180,16 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: async function (options) {
+    this.data.selectRoleKindNumber = getApp().selectRoleKindNumber;
+
     this.updateWeekDays()
 
     await this._updateCourseList()
 
     if (this.data.week_count > 0) {
       const array = Array.from({
-        length: this.data.week_count
-      },
+          length: this.data.week_count
+        },
         (_, index) => ({
           text: `第${index + 1}周`,
           value: index
@@ -198,7 +207,7 @@ Page({
    * Lifecycle function--Called when page is initially rendered
    */
   onReady() {
-    
+
   },
 
   /**
@@ -244,9 +253,9 @@ Page({
   },
 
   // 监听底部TabBar点击事件
-  onTabItemTap: async function(item) {
+  onTabItemTap: async function (item) {
     console.log('当前点击的Tab信息:', item);
-    switch(item.index) {
+    switch (item.index) {
       case 0:
         break;
       case 1:
@@ -261,15 +270,14 @@ Page({
     await this._updateCourseList();
     const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
 
+    console.log("week", week)
     this.setData({
       week_index: week - 1
     })
 
-    this.setData(
-      {
-        classSelect: getApp().classSelect
-      }
-    )
+    this.setData({
+      classSelect: getApp().classSelect
+    })
   },
 
   onCourseInfoShow(event) {

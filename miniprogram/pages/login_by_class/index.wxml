@@ -9,24 +9,32 @@
 
   <view class="page-body">
     <view class="select-container">
-      <van-field
-        value="{{ classFieldValue }}"
-        is-link
-        readonly
-        label="班级"
-        placeholder="请选择所在班级"
-        bind:tap="onDepartmentClick"
-      />
-      <van-popup show="{{ departmentShow }}" round position="bottom">
-        <van-cascader
-          wx:if="{{ departmentShow }}"
-          value="{{ cascaderValue }}"
-          title="请选择所在部门"
-          options="{{ departmentsOptions }}"
-          bind:close="onDepartmentClose"
-          bind:finish="onDepartmentFinish"
-        />
-      </van-popup>
+      <text>请根据您的角色选择班级或老师查看</text>
+      <van-collapse accordion="{{ true }}" value="{{ selectRoleKindNumber }}" bind:change="onCollapseRuleSelectChange">
+        <!-- 学生选择入口 -->
+        <van-collapse-item title="我是学生" name="1">
+          <van-field value="{{ classFieldValue }}" is-link readonly label="班级" placeholder="请选择所在班级"
+            bind:tap="onDepartmentClick" />
+          <van-popup show="{{ departmentShow }}" round position="bottom">
+            <van-cascader wx:if="{{ departmentShow }}" value="{{ cascaderValue }}" title="请选择所在部门"
+              options="{{ departmentsOptions }}" bind:close="onDepartmentClose" bind:finish="onDepartmentFinish" />
+          </van-popup>
+        </van-collapse-item>
+        <!-- 老师选择入口 -->
+        <van-collapse-item title="我是老师" name="2">
+          <view class="teacher-name">
+            <text>姓名</text>
+            <input type="text" model:value="{{ classSelect }}" placeholder="请输入姓名"/>
+          </view>
+          <van-field value="{{ classFieldValue }}" is-link label="部门" placeholder="请选择部门"
+            bind:tap="onteacherDepartmentSelectClick" />
+          <van-popup show="{{ teacherDepartmentShow }}" round position="bottom">
+            <van-cascader wx:if="{{ teacherDepartmentShow }}" value="{{ teacherDepartmentSelect }}" title="请选择所在部门"
+              options="{{ departmentsOptions }}" bind:close="onteacherDepartmentSelectClose"
+              bind:finish="onteacherDepartmentSelectFinish" />
+          </van-popup>
+        </van-collapse-item>
+      </van-collapse>
     </view>
 
     <van-button custom-class="login-button" type="primary" bind:click="onLoginButtonClick" plain>登录
@@ -34,14 +42,13 @@
 
 
     <view class="register">
-      <van-cell title="还没有你所在班级/数据异常/无法登录？" is-link bind:click="OnShowRegisterInfo" />
-    <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送班级名称，专业或故障截图信息到邮箱。
-      <email>1603668253@qq.com</email>
-      <van-button type="primary" bind:click="onRefreshClicked">
-      刷新
-      </van-button>
-
-    </van-popup>  
+      <van-cell title="还没有您的课表/数据异常/无法登录？" is-link bind:click="OnShowRegisterInfo" />
+      <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送班级名称，专业或故障截图信息到邮箱。
+        <email>1603668253@qq.com</email>
+        <van-button type="primary" bind:click="onRefreshClicked">
+          刷新
+        </van-button>
+      </van-popup>
     </view>
   </view>
 </view>
