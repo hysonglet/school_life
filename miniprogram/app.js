@@ -159,6 +159,7 @@ App({
     let data = [];
 
     let selectRoleKindNumber = wx.getStorageSync("selectRoleKindNumber");
+    this.classFieldValue = wx.getStorageSync("classFieldValue");
     let classSelect = wx.getStorageSync('classSelect');
 
     // console.log("selectRoleKindNumber:", selectRoleKindNumber);
