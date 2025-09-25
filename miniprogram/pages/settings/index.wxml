@@ -30,12 +30,18 @@
             <text>V1.1.0 2025-09-20</text>
             <text>\n 1. 增加教师端查询入口</text>
             <text>\n 2. 修复学生端当日课表的节次显示错误的bug</text>
-            <text>\n 3. 修复教室端查看当天课表内容重复的bug
-            
-            </text>
+            <text>\n 3. 修复教师端查看当天课表内容重复的bug\n</text>
+            <text>V1.1.1 2025-09-25</text>
+            <text>\n 1. 修复单双周显示错误的bug</text>
+            <text>\n 2. 优化课程格子的字体大小</text>
+            <text>\n 3. 优化刷新课程的后台逻辑</text>
           </view>
         </view>
       </van-collapse-item>
+
+    <van-collapse-item title="后台数据库同步时间" name="6">
+      <text>{{databaseSyncDateTime}}</text>
+    </van-collapse-item>
     </van-collapse>
     <van-button block type="primary" bind:tap="onClearCache">退出</van-button>
   </view>

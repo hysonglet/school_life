@@ -31,7 +31,6 @@ App({
     this.departmentsOptions = wx.getStorageSync("departmentsOptions")
 
     this.launchFinished = true
-
   },
 
   // 获取微信小程序临时code码
@@ -156,5 +155,36 @@ App({
     }
   },
 
+  async refreshCourses() {
+    let data = [];
 
+    let selectRoleKindNumber = wx.getStorageSync("selectRoleKindNumber");
+    let classSelect = wx.getStorageSync('classSelect');
+
+    // console.log("selectRoleKindNumber:", selectRoleKindNumber);
+
+    if (selectRoleKindNumber == 1) {
+      data = await this.getClassesSchedule(this.classSelect);
+    }
+    else {
+      data = await this.getTeacherSchedule(this.classSelect, this.classFieldValue)
+
+      // console.log("teacher: :", this.classSelect, this.classFieldValue)
+    }
+
+    // console.log('refresh: ', data)
+    if (data.length === 0) {
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'none'
+      })
+      return;
+    }
+
+    this.coursesSchedule = data;
+
+    // console.log('refresh: ', data)
+
+    return data;
+  }
 });

@@ -10,6 +10,7 @@ Page({
     classFieldValue: "",
     departmentsOptions: [],
     selectRoleKindNumber: 1,
+    databaseSyncDateTime:"2025-09-01 00:00:00"
   },
 
   /**
@@ -24,11 +25,12 @@ Page({
       classSelect: wx.getStorageSync("classSelect"),
       coursesSchedule: wx.getStorageSync("coursesSchedule"),
       departmentsOptions: wx.getStorageSync("departmentsOptions"),
-      selectRoleKindNumber: wx.getStorageSync("selectRoleKindNumber")
+      selectRoleKindNumber: wx.getStorageSync("selectRoleKindNumber"),
+      databaseSyncDateTime: wx.getStorageSync("databaseSyncDateTime")
     })
 
-    console.log('departmentsOptions', this.data.departmentsOptions)
-
+    // console.log('departmentsOptions', this.data.departmentsOptions)
+    this.getDatabaseSyncDatetime();
   },
 
   /**
@@ -89,6 +91,24 @@ Page({
     wx.navigateTo({
       url: '/pages/login_by_class/index',
     })
+  },
+
+  // 获取数据库更新时间
+  async getDatabaseSyncDatetime() {
+    const rst = await wx.pro.request({
+      url: getApp().service_url + "/database_version",
+      method: 'GET',
+    })
+
+    if (rst.statusCode !== 200) {
+      return ""
+    }
+
+    this.setData({
+      databaseSyncDateTime: rst.data.update,
+    })
+
+    return this.data.databaseSyncDateTime
   },
 
   /**

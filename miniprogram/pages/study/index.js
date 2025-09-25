@@ -135,7 +135,7 @@ Page({
     const courseColorCache = {};
 
 
-    console.log(this.data.coursesSchedule)
+    // console.log(this.data.coursesSchedule)
     const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object+course.class))];
 
     object_list.forEach((courseName, index) => {
@@ -146,7 +146,7 @@ Page({
     this.setData({
       courseColor: courseColorCache,
     })
-    console.log("courseColor", this.data.courseColor)
+    // console.log("courseColor", this.data.courseColor)
   },
 
   /**
@@ -179,6 +179,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: async function (options) {
+    await getApp().refreshCourses();
 
     this.updateWeekDays()
 
@@ -264,11 +265,13 @@ Page({
 
 
   async onRefresh() {
-    // await getApp().getCoursesSchedule();
+    await getApp().refreshCourses();
+
     await this._updateCourseList();
+    
     const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
 
-    console.log("week", week)
+    // console.log("week", week)
     this.setData({
       week_index: week - 1
     })
