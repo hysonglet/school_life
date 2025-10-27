@@ -21,7 +21,7 @@ Page({
 
     console.log("onLoad end");
 
-    // 获取近日课程
+    // 获取今日课程
     await this.updateTodayCourses();
 
     // 获取广告
@@ -31,8 +31,8 @@ Page({
   onReady: async function () {
     await this.updateTodayCourses();
   },
-  onChangeTab(e) {},
-  onOpenTipsModal() {},
+  onChangeTab(e) { },
+  onOpenTipsModal() { },
 
   async onPullDownRefresh() {
     await this.getAnnouncement();
@@ -60,7 +60,7 @@ Page({
     }
   },
 
-  onTabItemTap: async function(item) {
+  onTabItemTap: async function (item) {
     console.log("onTabItemTap: " + item.index);
     if (item.index == 0) {
       await this.updateTodayCourses();
@@ -91,18 +91,20 @@ Page({
 
     const today = new Date();
     const semesterStartDate = new Date(app.semesterStartDate);
-    
-    const todayCoursesCache = app.coursesSchedule.filter(courses => {
-      const courseDate = new Date(semesterStartDate);
-      courseDate.setDate(semesterStartDate.getDate() + (courses.week_start - 1) * 7 + (courses.week - 1));
+    const nowWeek = utils.getWeekNumber(semesterStartDate, today);
 
-      const nowWeek = utils.getWeekNumber(semesterStartDate, today);
+    const todayCoursesCache = app.coursesSchedule.filter(courses => {
+
+      // 只提取当前的课程出来
       return (courses.week_start <= nowWeek) &&
         (courses.week_end >= nowWeek) &&
-        (today.getDay() == courses.week);
+        (today.getDay() == courses.week) &&
+        ((courses.week_type === 'both') ||
+          ((courses.week_type === 'single') && ((nowWeek) % 2 === 1)) ||
+          ((courses.week_type === 'double') && ((nowWeek) % 2 === 0)));
     })
 
-    
+    // 去重
     const uniqueArray = [...new Map(todayCoursesCache.map(item => [(item.class_start), item])).values()];
     // console.log('todayCoursesCache', todayCoursesCache);
     // console.log('uniqueArray', uniqueArray)

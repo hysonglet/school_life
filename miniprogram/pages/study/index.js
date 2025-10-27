@@ -30,40 +30,40 @@ Page({
     curriculum_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     // 课程表的日期显示列表
     week_days: [{
-        week: "周一",
-        is_today: true,
-        day: 1
-      },
-      {
-        week: "周二",
-        is_today: false,
-        day: 2
-      },
-      {
-        week: "周三",
-        is_today: false,
-        day: 3
-      },
-      {
-        week: "周四",
-        is_today: false,
-        day: 4
-      },
-      {
-        week: "周五",
-        is_today: false,
-        day: 5
-      },
-      {
-        week: "周六",
-        is_today: false,
-        day: 6
-      },
-      {
-        week: "周日",
-        is_today: false,
-        day: 7
-      },
+      week: "周一",
+      is_today: true,
+      day: 1
+    },
+    {
+      week: "周二",
+      is_today: false,
+      day: 2
+    },
+    {
+      week: "周三",
+      is_today: false,
+      day: 3
+    },
+    {
+      week: "周四",
+      is_today: false,
+      day: 4
+    },
+    {
+      week: "周五",
+      is_today: false,
+      day: 5
+    },
+    {
+      week: "周六",
+      is_today: false,
+      day: 6
+    },
+    {
+      week: "周日",
+      is_today: false,
+      day: 7
+    },
     ]
   },
 
@@ -103,7 +103,7 @@ Page({
   async _updateCourseList() {
     const colorList = [
       "#fbff35ff",
-      "#df7767ff",
+      "#89f730ff",
       "#4DFFBE",
       "#1de0f2ff",
       "#7bec2aff",
@@ -111,16 +111,16 @@ Page({
       "#78C841",
       "#B4E50D",
       "#FF9B2F",
-      "#dd20c7ff",
+      "#28faf0ff",
       "#F5BABB",
       "#11ebceff",
       "#FF90BB",
       "#FFC1DA",
-      "#f1587cff",
-      "#53fff4ff",
+      "#fb8aa5ff",
+      "#de65faff",
       "#FF894F",
       "#EA5B6F",
-      "#FAEB92",
+      "#f77779ff",
       "#CC66DA",
       "#9929EA",
       "#FF2DD1",
@@ -136,7 +136,7 @@ Page({
 
 
     // console.log(this.data.coursesSchedule)
-    const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object+course.class))];
+    const object_list = [...new Set(this.data.coursesSchedule.map(course => course.object + course.class))];
 
     object_list.forEach((courseName, index) => {
       courseColorCache[courseName] = colorList[index % colorList.length];
@@ -179,7 +179,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: async function (options) {
-    await getApp().refreshCourses();
+    // await getApp().refreshCourses();
 
     this.updateWeekDays()
 
@@ -187,8 +187,8 @@ Page({
 
     if (this.data.week_count > 0) {
       const array = Array.from({
-          length: this.data.week_count
-        },
+        length: this.data.week_count
+      },
         (_, index) => ({
           text: `第${index + 1}周`,
           value: index
@@ -266,9 +266,8 @@ Page({
 
   async onRefresh() {
     await getApp().refreshCourses();
-
     await this._updateCourseList();
-    
+
     const week = utils.getWeekNumber(getApp().semesterStartDate, new Date());
 
     // console.log("week", week)
