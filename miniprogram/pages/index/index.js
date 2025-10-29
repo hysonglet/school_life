@@ -46,6 +46,19 @@ Page({
     console.log('image load error: ', e)
   },
 
+  gotoWebPage(url) {
+    const targetUrl = url;
+
+    const mpWeixinRegex = /^https:\/\/mp\.weixin\.qq\.com(\S*)?$/i;
+
+    // 匹配微信公众号的链接才能跳转
+    if (mpWeixinRegex.test(targetUrl)) {
+      wx.navigateTo({
+        url: `/pages/webview/index?url=${targetUrl}`
+      })
+    }
+  },
+
   // 按下图片跳转到图片的链接
   goToWebPage(e) {
     const targetUrl = e.currentTarget.dataset.index;
@@ -58,6 +71,17 @@ Page({
         url: `/pages/webview/index?url=${targetUrl}`
       })
     }
+  },
+
+  course_time() {
+    this.gotoWebPage("https://mp.weixin.qq.com/s/G4aECnVEWPfFf0B_oxVDkQ")
+  },
+
+  unimplement() {
+    wx.showToast({
+      title: '此功能暂未开放',
+      icon: "none"
+    })
   },
 
   onTabItemTap: async function (item) {

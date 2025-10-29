@@ -19,7 +19,6 @@
   </swiper>
 
   <view id="announcement_view">
-    <van-divider></van-divider>
     <van-tabs swipeable="true" active="{{noticeTabActive}}" type="line">
       <van-tab title="今日课表">
         <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
@@ -33,7 +32,41 @@
           暂无今日课表
         </view>
       </van-tab>
-      <van-tab title="生活" disabled>生活</van-tab>
+      <van-tab title="其他功能">
+        <view class="others_functions">
+          <view>
+            <van-icon name="/resources/images/上课时间.png" size="80rpx"
+            bind:tap="course_time"
+            />
+            <text>上课时间</text>
+          </view>
+          <view>
+            <van-icon name="/resources/images/点名.png" size="80rpx"
+            bind:tap="unimplement"/>
+            <text>点名啦</text>
+          </view>
+          <view>
+            <van-icon name="/resources/images/失物招领.png" size="80rpx"
+            bind:tap="unimplement"/>
+            <text>丢东西</text>
+          </view>
+          <view>
+            <van-icon name="/resources/images/查教室.png" size="80rpx"
+            bind:tap="unimplement"/>
+            <text>查教室</text>
+          </view>
+          <view>
+            <van-icon name="/resources/images/查老师.png" size="80rpx"
+            bind:tap="unimplement"/>
+            <text>查老师</text>
+          </view>
+          <view>
+            <van-icon name="/resources/images/查成绩.png" size="80rpx"
+            bind:tap="unimplement"/>
+            <text>查成绩</text>
+          </view>
+        </view>
+      </van-tab>
     </van-tabs>
   </view>
 </view>

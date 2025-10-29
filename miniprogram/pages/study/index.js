@@ -103,28 +103,28 @@ Page({
   async _updateCourseList() {
     const colorList = [
       "#fbff35ff",
-      "#89f730ff",
+      "#df8c55ff",
       "#4DFFBE",
       "#1de0f2ff",
-      "#7bec2aff",
+      "#67f501ff",
       "#F5CBCB",
-      "#78C841",
-      "#B4E50D",
-      "#FF9B2F",
-      "#28faf0ff",
+      "#d3fdb8ff",
+      "#73ebafff",
+      "#f88102ff",
+      "#e73b5dff",
       "#F5BABB",
-      "#11ebceff",
+      "#00f8d7ff",
       "#FF90BB",
       "#FFC1DA",
       "#fb8aa5ff",
       "#de65faff",
       "#FF894F",
       "#EA5B6F",
-      "#f77779ff",
+      "#f2191dff",
       "#CC66DA",
       "#9929EA",
       "#FF2DD1",
-      "#00FFDE"
+      "#00cefcff"
     ];
 
     this.setData({

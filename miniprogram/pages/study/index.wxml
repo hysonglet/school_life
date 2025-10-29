@@ -1,4 +1,5 @@
 <view class="header">
+  <text bind:tap="onRefresh">刷新</text>
   <image class="refresh-image" src="/resources/refresh.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false"
     binderror="" bindload="" bind:tap="onRefresh" />
 

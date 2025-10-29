@@ -181,6 +181,12 @@ App({
       })
       return;
     }
+    else {
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'none'
+      })
+    }
 
     this.coursesSchedule = data;
 
