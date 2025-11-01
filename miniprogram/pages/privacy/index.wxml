@@ -1,0 +1,61 @@
+<view class="page-container">
+	<text style="font-size: 40rpx;">SG通 隐私同意条款</text>
+
+	<scroll-view class="scroll-container" scroll-y="true">
+		<view class="private-items">
+			<text>欢迎使用<span>SG通</span>校内课表小程序</text>
+			<text>
+				为保障您的个人隐私与信息安全，我们特制定本条款，明确本小程序无任何个人信息收集行为，请您在使用前仔细阅读并同意本条款，若不同意，请勿使用本小程序。
+			</text>
+		</view>
+
+		<view class="private-items">
+			<text>一、明确无任何信息收集行为\n</text>
+			<text>SG通全程不收集任何个人信息及设备相关信息，具体包括但不限于：\n</text>
+			<text>1. 不通过微信授权获取您的微信昵称、微信头像等任何微信平台关联信息；
+				2. 不直接收集您的学号、工号、姓名、班级、手机号、地址等任何个人身份隐私数据；
+				3. 不读取您手机内部的图片、文件、通讯录、位置等存储或权限信息；
+				4. 不自动收集您的设备型号、小程序使用日志（如查询时间、操作记录）等任何设备或使用过程相关信息。
+				5. 您使用本小程序期间，无需授权任何信息访问权限。
+      </text>
+		</view>
+
+		<view class="private-items">
+			<text>二、信息使用与共享说明\n</text>
+			<text>因本小程序无任何信息收集行为，故不存在信息使用、存储、共享、出售、出租等相关操作，全程无任何个人信息流转环节，不会将您的任何信息用于商业用途或提供给第三方。</text>
+		</view>
+
+		<view class="private-items">
+			<text>三、用户权利保障\n</text>
+			<text>1. 由于本小程序不收集任何信息，您无需进行个人信息查看、修改或删除操作，也无需担心信息泄露风险；
+				2. 若您希望停止使用本小程序，直接退出即可，无账号注销等额外操作需求，且不会留下任何个人使用记录。\n
+			</text>
+		</view>
+
+		<view class="private-items">
+			<text>四、条款更新与通知\n</text>
+			<text>1. 若因法律法规调整或小程序功能升级需修改本条款，我们将在小程序首页显著位置发布更新通知，您可随时查看最新内容；
+				2. 条款更新后，若您继续使用本小程序，即视为同意更新后的条款；若不同意，停止使用即可。
+			</text>
+		</view>
+
+		<view class="private-items">
+			<text>五、其他说明\n</text>
+			<text>1. 本小程序面向所有微信用户开放使用，仅提供课表查看基础功能；
+				2. 若您在使用过程中对隐私保护有疑问或投诉，可通过邮箱 “hysonglet@qq.com” 与我们沟通，我们将在 3 个工作日内回复处理。
+        3. 隐私协议开始日期：2025年11月1日
+			</text>
+		</view>
+	</scroll-view>
+
+	<view class="agree-container">
+		您点击 “同意” 按钮，即表示您已充分阅读、理解并接受本隐私同意条款的全部内容，知晓本小程序无任何信息收集行为。
+	</view>
+
+	<view class="ok-or-not-container">
+		<van-button type="primary" custom-style="width: 300rpx;" bindtap="agreePrivacy"> 同意 </van-button>
+		<van-button type="warning" custom-style="width: 300rpx;" bindtap="exitPrivacy"> 退出 </van-button>
+	</view>
+
+</view>
+

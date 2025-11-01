@@ -25,7 +25,6 @@ Page({
     // 选择的班级
     classSelect: "",
     // 从数据库中获得的课程表清单
-    // TODO：单双周考虑
     coursesSchedule: [],
     curriculum_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     // 课程表的日期显示列表
@@ -111,7 +110,7 @@ Page({
       "#d3fdb8ff",
       "#73ebafff",
       "#f88102ff",
-      "#e73b5dff",
+      "#f97892ff",
       "#F5BABB",
       "#00f8d7ff",
       "#FF90BB",
@@ -120,7 +119,7 @@ Page({
       "#de65faff",
       "#FF894F",
       "#EA5B6F",
-      "#f2191dff",
+      "#f4595cff",
       "#CC66DA",
       "#9929EA",
       "#FF2DD1",
@@ -206,7 +205,7 @@ Page({
    * Lifecycle function--Called when page is initially rendered
    */
   onReady() {
-
+    this.onRefresh();
   },
 
   /**
@@ -258,7 +257,10 @@ Page({
       case 0:
         break;
       case 1:
-        await this.onRefresh()
+        // 当课程表为空时，点击底部图标才，刷新课程表
+        if (this.data.coursesSchedule.length == 0) {
+          await this.onRefresh()
+        }
         break;
     }
   },

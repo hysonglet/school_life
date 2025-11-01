@@ -37,7 +37,10 @@
             <text>\n 1. 修复今日课程显示错误的bug</text>
             <text>\n 2. 优化课表颜色效果\n</text>
             <text>V1.1.3 2025-10-29</text>
-            <text>\n 1. 上课时间查询的入口</text>
+            <text>\n 1. 上课时间查询的入口\n</text>
+            <text>V1.1.4 2025-11-1\n</text>
+            <text>1. 增加隐私政策说明\n</text>
+            <text>2. 优化课表刷新的规则\n</text>
           </view>
         </view>
       </van-collapse-item>

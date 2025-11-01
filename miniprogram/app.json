@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/privacy/index",
     "pages/login_by_class/index",
     "pages/login/login",
     "pages/index/index",
