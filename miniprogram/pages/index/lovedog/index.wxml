@@ -1,0 +1,19 @@
+<view class="page">
+  <van-nav-bar
+    title="舔狗日记"
+    left-text="返回"
+    left-arrow
+    bind:click-left="onClickLeft"
+  />
+  <view class="container">
+    <view class="content">
+      <text>
+      {{content}}
+      </text>
+    </view>
+    <view class="btn-group">
+      <van-button type="primary" bind:click="onCopyToClipboard">复制</van-button>
+      <van-button type="primary" bind:click="onRefreshNew">刷新</van-button>
+    </view>
+  </view>
+</view>

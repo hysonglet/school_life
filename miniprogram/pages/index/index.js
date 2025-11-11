@@ -77,6 +77,13 @@ Page({
     this.gotoWebPage("https://mp.weixin.qq.com/s/G4aECnVEWPfFf0B_oxVDkQ")
   },
 
+  // 跳转到舔狗日记
+  lovedog() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/lovedog/index',
+    })
+  },
+
   unimplement() {
     wx.showToast({
       title: '此功能暂未开放',

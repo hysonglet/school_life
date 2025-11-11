@@ -7,16 +7,16 @@
   <view class="mine-container">
     <van-collapse accordion value="{{ collapseActiveName }}" bind:change="onCollapseChange">
       <van-collapse-item title="关于本程序" name="2">
-        SG通为校内电子与软件协会开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，后台数据为校内同学的贡献，一切行为与官方无关。
+        SG通为电子与软件协会开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，后台数据为校内同学的贡献，一切行为与官方无关。
       </van-collapse-item>
-      <van-collapse-item title="团队介绍" name="3">
+      <!-- <van-collapse-item title="团队介绍" name="3">
         <text>创始人：彭忠怀
           参与开发：肖琳、李香玲、易宇涛、彭忠怀(教师), 曾亚莘(工程师)
-        </text>
-      </van-collapse-item>
+        </text> 
+      </van-collapse-item>-->
       <van-collapse-item title="BUG提交" name="4">
         任何BUG问题及优化、功能建议可发送邮件到 <EMAIL>
-          1603668353@qq.com</EMAIL>
+          hysonglet@qq.com</EMAIL>
       </van-collapse-item>
       <van-collapse-item title="版本更新记录" name="5">
         <view>

@@ -20,18 +20,6 @@
 
   <view id="announcement_view">
     <van-tabs swipeable="true" active="{{noticeTabActive}}" type="line">
-      <van-tab title="今日课表">
-        <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
-          <view class="today_courses_item" wx:for="{{todayCourses}}" wx:key="index">
-            <text>{{item.object}}</text>
-            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration - 1:''}}节
-            {{item.address}}</text>
-          </view>
-        </view>
-        <view wx:else>
-          暂无今日课表
-        </view>
-      </van-tab>
       <van-tab title="其他功能">
         <view class="others_functions">
           <view>
@@ -41,9 +29,9 @@
             <text>上课时间</text>
           </view>
           <view>
-            <van-icon name="/resources/images/点名.png" size="80rpx"
-            bind:tap="unimplement"/>
-            <text>点名啦</text>
+            <van-icon name="/resources/images/舔狗日记.png" size="80rpx"
+            bind:tap="lovedog"/>
+            <text>舔狗日记</text>
           </view>
           <view>
             <van-icon name="/resources/images/失物招领.png" size="80rpx"
@@ -65,6 +53,18 @@
             bind:tap="unimplement"/>
             <text>查成绩</text>
           </view>
+        </view>
+      </van-tab>
+      <van-tab title="今日课表">
+        <view class="today_courses" wx:if="{{todayCourses.length > 0}}">
+          <view class="today_courses_item" wx:for="{{todayCourses}}" wx:key="index">
+            <text>{{item.object}}</text>
+            <text>第{{item.class_start}}{{item.class_duration > 1?'~':''}}{{item.class_duration > 1? item.class_start + item.class_duration - 1:''}}节
+            {{item.address}}</text>
+          </view>
+        </view>
+        <view wx:else>
+          暂无今日课表
         </view>
       </van-tab>
     </van-tabs>

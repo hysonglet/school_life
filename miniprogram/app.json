@@ -4,6 +4,7 @@
     "pages/login_by_class/index",
     "pages/login/login",
     "pages/index/index",
+    "pages/index/lovedog/index",
     "pages/study/index",
     "pages/life/life",
     "pages/personal/personal",
@@ -57,7 +58,8 @@
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-picker": "@vant/weapp/picker/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index"
   },
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"

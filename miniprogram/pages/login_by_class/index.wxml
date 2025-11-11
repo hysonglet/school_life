@@ -44,7 +44,7 @@
     <view class="register">
       <van-cell title="还没有您的课表/数据异常/无法登录？" is-link bind:click="OnShowRegisterInfo" />
       <van-popup show="{{ showRegisterInfo }}" bind:close="onCloseRegisterInfo">请邮件发送班级名称，专业或故障截图信息到邮箱。
-        <email>1603668253@qq.com</email>
+        <email>hysonglet@qq.com</email>
         <van-button type="primary" bind:click="onRefreshClicked">
           刷新
         </van-button>
