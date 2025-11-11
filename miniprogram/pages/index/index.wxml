@@ -34,24 +34,24 @@
             <text>舔狗日记</text>
           </view>
           <view>
-            <van-icon name="/resources/images/失物招领.png" size="80rpx"
-            bind:tap="unimplement"/>
-            <text>丢东西</text>
+            <van-icon name="/resources/images/love.png" size="80rpx"
+            bind:tap="loveword"/>
+            <text>土味情话</text>
           </view>
           <view>
-            <van-icon name="/resources/images/查教室.png" size="80rpx"
-            bind:tap="unimplement"/>
-            <text>查教室</text>
+            <van-icon name="/resources/images/morning.png" size="80rpx"
+            bind:tap="goodmorning"/>
+            <text>早安</text>
           </view>
           <view>
-            <van-icon name="/resources/images/查老师.png" size="80rpx"
-            bind:tap="unimplement"/>
-            <text>查老师</text>
+            <van-icon name="/resources/images/evening.png" size="80rpx"
+            bind:tap="goodevening"/>
+            <text>晚安</text>
           </view>
           <view>
-            <van-icon name="/resources/images/查成绩.png" size="80rpx"
-            bind:tap="unimplement"/>
-            <text>查成绩</text>
+            <van-icon name="/resources/images/history.png" size="80rpx"
+            bind:tap="historyTody"/>
+            <text>历史今日</text>
           </view>
         </view>
       </van-tab>

@@ -1,16 +1,16 @@
 <view class="page">
   <van-nav-bar
-    title="舔狗日记"
+    title="{{title}}"
     left-text="返回"
     left-arrow
     bind:click-left="onClickLeft"
   />
   <view class="container">
-    <view class="content">
+    <scroll-view class="content" scroll-y="true">
       <text>
       {{content}}
       </text>
-    </view>
+    </scroll-view>
     <view class="btn-group">
       <van-button type="primary" bind:click="onCopyToClipboard">复制</van-button>
       <van-button type="primary" bind:click="onRefreshNew">刷新</van-button>

@@ -80,7 +80,31 @@ Page({
   // 跳转到舔狗日记
   lovedog() {
     let ret = wx.navigateTo({
-      url: '/pages/index/lovedog/index',
+      url: '/pages/index/lovedog/index?name=lovedog',
+    })
+  },
+
+  loveword() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/lovedog/index?name=loveword',
+    })
+  },
+
+  goodmorning() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/lovedog/index?name=morning',
+    })
+  },
+
+  goodevening() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/lovedog/index?name=evening',
+    })
+  },
+
+  historyTody() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/lovedog/index?name=history',
     })
   },
 
