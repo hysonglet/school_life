@@ -5,6 +5,7 @@
     "pages/login/login",
     "pages/index/index",
     "pages/index/lovedog/index",
+    "pages/index/happyavatar/index",
     "pages/study/index",
     "pages/life/life",
     "pages/personal/personal",

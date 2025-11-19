@@ -29,6 +29,11 @@
             <text>上课时间</text>
           </view>
           <view>
+            <van-icon name="/resources/images/avatar.png" size="80rpx"
+            bind:tap="happyavatar"/>
+            <text>无语头像</text>
+          </view>
+          <view>
             <van-icon name="/resources/images/舔狗日记.png" size="80rpx"
             bind:tap="lovedog"/>
             <text>舔狗日记</text>

@@ -84,6 +84,12 @@ Page({
     })
   },
 
+  happyavatar() {
+    let ret = wx.navigateTo({
+      url: '/pages/index/happyavatar/index',
+    })
+  },
+
   loveword() {
     let ret = wx.navigateTo({
       url: '/pages/index/lovedog/index?name=loveword',
