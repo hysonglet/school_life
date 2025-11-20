@@ -7,7 +7,7 @@
   <view class="mine-container">
     <van-collapse accordion value="{{ collapseActiveName }}" bind:change="onCollapseChange">
       <van-collapse-item title="关于本程序" name="2">
-        SG通为电子与软件协会开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，后台数据为校内同学的贡献，一切行为与官方无关。
+        SG通为电子与软件协会开发,仅用于学习和交流web应用开发技术，不代表学校官方和任何组织，一切行为与官方无关。
       </van-collapse-item>
       <!-- <van-collapse-item title="团队介绍" name="3">
         <text>创始人：彭忠怀
@@ -18,36 +18,11 @@
         任何BUG问题及优化、功能建议可发送邮件到 <EMAIL>
           hysonglet@qq.com</EMAIL>
       </van-collapse-item>
-      <van-collapse-item title="版本更新记录" name="5">
-        <view>
-          <view>
-            <text>V1.0.0 2025-09-17</text>
-            <text>\n 1. 学生端查询入口</text>
-          </view>
-          <view>
-            <text>V1.1.0 2025-09-20</text>
-            <text>\n 1. 增加教师端查询入口</text>
-            <text>\n 2. 修复学生端当日课表的节次显示错误的bug</text>
-            <text>\n 3. 修复教师端查看当天课表内容重复的bug\n</text>
-            <text>V1.1.1 2025-09-25</text>
-            <text>\n 1. 修复单双周显示错误的bug</text>
-            <text>\n 2. 优化课程格子的字体大小</text>
-            <text>\n 3. 优化刷新课程的后台逻辑\n</text>
-            <text>V1.1.2 2025-10-27</text>
-            <text>\n 1. 修复今日课程显示错误的bug</text>
-            <text>\n 2. 优化课表颜色效果\n</text>
-            <text>V1.1.3 2025-10-29</text>
-            <text>\n 1. 上课时间查询的入口\n</text>
-            <text>V1.1.4 2025-11-1\n</text>
-            <text>1. 增加隐私政策说明\n</text>
-            <text>2. 优化课表刷新的规则\n</text>
-          </view>
-        </view>
+      <van-collapse-item title="分享" name="5">
+        <button open-type="share" class="share-btn" block type="primary">
+          邀请好友
+        </button>
       </van-collapse-item>
-
-    <van-collapse-item title="后台数据库同步时间" name="6">
-      <text>{{databaseSyncDateTime}}</text>
-    </van-collapse-item>
     </van-collapse>
     <van-button block type="primary" bind:tap="onClearCache">退出</van-button>
   </view>

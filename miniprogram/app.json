@@ -13,6 +13,26 @@
     "pages/webview/index",
     "utils/date.wxs"
   ],
+  "supportedMaterials": [
+    {
+      "materialType": "text/html",
+      "name": "用${nickname}打开",
+      "desc": "描述",
+      "path": "pages/settings/index"
+    },
+    {
+      "materialType": "text/html",
+      "name": "用${nickname}打开",
+      "desc": "描述",
+      "path": "pages/index/index"
+    },
+    {
+      "materialType": "text/html",
+      "name": "用${nickname}打开",
+      "desc": "描述",
+      "path": "pages/index/happyavatar/index"
+    }
+  ],
   "window": {
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",

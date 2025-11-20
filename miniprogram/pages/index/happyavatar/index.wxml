@@ -24,14 +24,3 @@
       <van-button type="primary" bind:tap="saveImageToAlbum">保存</van-button>
     </view>
   </view>
-
-<view class="ad-container">
-  <ad 
-    unit-id="adunit-619699d3ad5bccd0"  
-    type="banner"
-    size="banner"
-    bindload="onAdLoad"
-    binderror="onAdError"
-    bindclose="onAdClose"      
-  ></ad>
-</view>

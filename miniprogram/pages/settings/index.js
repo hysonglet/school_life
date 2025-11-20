@@ -115,6 +115,12 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage() {
-
+    // 返回分享配置对象
+    return {
+      title: '这是一个有趣的课程表小程序，快来看看吧！', 
+      path: '/pages/privacy/index',   
+      imageUrl: 'https://mmbiz.qpic.cn/sz_mmbiz_png/FLW6iakA3fTErMDwIX3CMNP4WKibfr8juUfmk4r62Bj1s8v4GYibsJvENPjGddibwgt2x3cx9aojA21ZWJ7bL9Yrkw/640?wx_fmt=png&from=appmsg',
+      desc: '这里也有很棒的小工具，欢迎使用'  
+    };
   }
 })

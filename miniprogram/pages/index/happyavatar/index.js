@@ -6,7 +6,8 @@ Page({
    */
   data: {
     swiperCurrentIndex: 0,
-    src: "https://avatar.app.luler.top/avatar?type=ugly-avatar&r=0.8223577398152413",
+    refreshCount: 1,
+    videoAd: null,
     avatarInfoList: [
       {
         title: "敷衍",
@@ -67,6 +68,33 @@ Page({
   onLoad(options) {
     // this.onRefresh()
     this.downloadImage();
+
+
+    // 若在开发者工具中无法预览广告，请切换开发者工具中的基础库版本
+    // 在页面中定义激励视频广告
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      this.data.videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-08c0f684fb078aed'
+      })
+      this.data.videoAd.onLoad(() => {})
+      this.data.videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      this.data.videoAd.onClose((res) => {
+        console.log(res);
+        // 正常观看结束，否则继续播放广告
+        if (res && res.isEnded) {
+          return;
+        }
+        // 没有看完广告，则等下继续让播放广告
+        this.setData({
+          refreshCount: this.data.refreshCount - 2,
+        })
+        
+      })
+    }
   },
 
   /**
@@ -144,10 +172,11 @@ Page({
         // 下载成功：获取临时路径
         if (res.statusCode === 200) {
           const tempFilePath = res.tempFilePath;
-          console.log("图片下载成功，临时路径：", tempFilePath);
+          // console.log("图片下载成功，临时路径：", tempFilePath);
 
           // 更新数据，显示图片（隐藏加载提示）
           that.setData({
+            refreshCount: this.data.refreshCount + 1,
             [`avatarInfoList[${that.data.swiperCurrentIndex}].src`]: tempFilePath,
             isLoading: false
           });
@@ -184,7 +213,22 @@ Page({
    * 图片加载完成监听（可选，确保图片渲染成功）
    */
   onImageLoad(e) {
-    console.log("图片渲染完成，尺寸：", e.detail.width, "x", e.detail.height);
+    // console.log("图片渲染完成，尺寸：", e.detail.width, "x", e.detail.height);
+
+
+    if (this.data.refreshCount % 10 == 0) {
+      // 用户触发广告后，显示激励视频广告
+      if (this.data.videoAd) {
+        this.data.videoAd.show().catch(() => {
+          // 失败重试
+          this.data.videoAd.load()
+            .then(() => this.data.videoAd.show())
+            .catch(err => {
+              console.error('激励视频 广告显示失败', err)
+            })
+        })
+      }
+    }
   },
 
   /**
@@ -257,7 +301,14 @@ Page({
   },
 
   onClickLeft() {
-    wx.navigateBack();
+    const pages = getCurrentPages();
+    if (pages.length > 1) {
+      // 有上一页，返回
+      wx.navigateBack({ delta: 1 });
+    } else {
+      // 无上一页，跳转首页（根据实际情况调整 url）
+      wx.navigateTo({ url: 'pages/index/index' });
+    }
   },
 
   onSwiperChange(e) {
@@ -272,7 +323,7 @@ Page({
   },
 
   onImageLoadStart() {
-    console.log('onImageLoadStart')
+    // console.log('onImageLoadStart')
   },
 
   onImageLoadSuccess() {
@@ -288,7 +339,4 @@ Page({
       icon: 'none',
     })
   },
-
-  onAdLoad(e) {
-  }
 })
